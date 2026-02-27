@@ -186,6 +186,17 @@ ul { list-style: none; }
     gap: 8px;
 }
 
+.logo-img {
+    height: 75px;
+    width: auto;
+    transition: var(--transition);
+    filter: brightness(0) invert(1);
+}
+
+.logo-img:hover {
+    transform: scale(1.05);
+}
+
 .logo-text {
     font-family: var(--font-display);
     font-size: 1.8rem;
