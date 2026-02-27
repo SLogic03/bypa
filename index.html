@@ -210,21 +210,58 @@
                 <span class="section-tag dark">Resultados Reales</span>
                 <h2 class="section-title">Ellos ya están transformando su mensaje</h2>
             </div>
-            <div class="video-grid">
-                <div class="video-card" data-animate="fade-up" data-delay="100">
-                    <div class="video-placeholder">
-                        <i class="fas fa-play"></i>
-                        <p>Video Testimonio 1</p>
-                        <span>Próximamente</span>
+            <div class="video-carousel" data-animate="fade-up" data-delay="100">
+                <button class="carousel-arrow carousel-prev" aria-label="Video anterior">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="carousel-viewport">
+                    <div class="carousel-track">
+                        <div class="carousel-slide">
+                            <video class="carousel-video" src="./assets/video/Bypa1.mp4" playsinline preload="metadata"></video>
+                            <div class="video-overlay">
+                                <button class="video-play-btn" aria-label="Reproducir video">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <video class="carousel-video" src="./assets/video/Bypa2.mp4" playsinline preload="metadata"></video>
+                            <div class="video-overlay">
+                                <button class="video-play-btn" aria-label="Reproducir video">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <video class="carousel-video" src="./assets/video/Bypa3.mp4" playsinline preload="metadata"></video>
+                            <div class="video-overlay">
+                                <button class="video-play-btn" aria-label="Reproducir video">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <video class="carousel-video" src="./assets/video/Bypa4.mp4" playsinline preload="metadata"></video>
+                            <div class="video-overlay">
+                                <button class="video-play-btn" aria-label="Reproducir video">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <video class="carousel-video" src="./assets/video/Bypa5.mp4" playsinline preload="metadata"></video>
+                            <div class="video-overlay">
+                                <button class="video-play-btn" aria-label="Reproducir video">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="video-card" data-animate="fade-up" data-delay="200">
-                    <div class="video-placeholder">
-                        <i class="fas fa-play"></i>
-                        <p>Video Testimonio 2</p>
-                        <span>Próximamente</span>
-                    </div>
-                </div>
+                <button class="carousel-arrow carousel-next" aria-label="Video siguiente">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <div class="carousel-dots"></div>
             </div>
         </div>
     </section>
