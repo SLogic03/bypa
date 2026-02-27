@@ -1331,45 +1331,28 @@ ul { list-style: none; }
     font-style: italic;
 }
 
-/* Glitch text effect */
-.glitch-text {
+/* Word highlight effect */
+.word-highlight {
     position: relative;
+    display: inline-block;
+    color: var(--primary);
 }
 
-.glitch-text::before,
-.glitch-text::after {
-    content: attr(data-text);
+.word-highlight::after {
+    content: '';
     position: absolute;
-    inset: 0;
+    bottom: 2px;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background: var(--gradient-primary);
+    border-radius: 2px;
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animated .word-highlight::after,
+.word-highlight.active::after {
     width: 100%;
-}
-
-.glitch-text::before {
-    color: #9B6DFF;
-    clip-path: inset(0 65% 0 0);
-    animation: glitch-left 3s infinite linear alternate-reverse;
-}
-
-.glitch-text::after {
-    color: #B794FF;
-    clip-path: inset(0 0 0 65%);
-    animation: glitch-right 3s infinite linear alternate-reverse;
-}
-
-@keyframes glitch-left {
-    0%, 90%, 100% { transform: translate(0); }
-    92% { transform: translate(-4px, 2px); }
-    94% { transform: translate(2px, -1px); }
-    96% { transform: translate(-2px, 1px); }
-    98% { transform: translate(3px, -2px); }
-}
-
-@keyframes glitch-right {
-    0%, 90%, 100% { transform: translate(0); }
-    93% { transform: translate(4px, -2px); }
-    95% { transform: translate(-2px, 1px); }
-    97% { transform: translate(2px, -1px); }
-    99% { transform: translate(-3px, 2px); }
 }
 
 /* ========================= FOOTER ========================= */
