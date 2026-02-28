@@ -539,12 +539,12 @@ ul { list-style: none; }
     border-radius: var(--radius-md);
     padding: 16px 24px;
     text-align: center;
-    animation: float 3s ease-in-out infinite;
+    animation: float 5s ease-in-out infinite;
 }
 
 @keyframes float {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    50% { transform: translateY(-5px); }
 }
 
 .badge-number {
@@ -1499,7 +1499,18 @@ ul { list-style: none; }
     .hero-subtitle { margin: 0 auto 36px; }
     .hero-buttons { justify-content: center; }
     .hero-social { justify-content: center; }
-    .hero-badge { right: 50%; transform: translateX(50%); bottom: -10px; }
+    .hero-badge {
+        right: 50%;
+        left: 50%;
+        transform: translate(-50%, 0);
+        bottom: -32px;
+        padding: 10px 16px;
+        min-width: 120px;
+        font-size: 0.95rem;
+        z-index: 2;
+    }
+    .badge-number { font-size: 1.1rem; }
+    .badge-label { font-size: 0.65rem; }
 
     @keyframes float {
         0%, 100% { transform: translateX(50%) translateY(0); }
