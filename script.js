@@ -136,7 +136,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const waTextarea = document.getElementById('waTextarea');
     const waSendBtn = document.getElementById('waSendBtn');
     const waQuickBtns = document.querySelectorAll('.wa-quick-btn');
-    const waBadge = document.querySelector('.wa-fab-badge');
     const waWidget = document.getElementById('waWidget');
     let waChatboxOpen = false;
 
@@ -144,9 +143,6 @@ document.addEventListener('DOMContentLoaded', () => {
         waChatboxOpen = !waChatboxOpen;
         waChatbox.classList.toggle('open', waChatboxOpen);
         waFab.classList.toggle('active', waChatboxOpen);
-        if (waChatboxOpen && waBadge) {
-            waBadge.style.display = 'none';
-        }
     }
 
     if (waFab) waFab.addEventListener('click', toggleChatbox);
@@ -187,8 +183,6 @@ document.addEventListener('DOMContentLoaded', () => {
         waSendBtn.addEventListener('click', () => {
             const userMsg = waTextarea.value.trim();
             if (!userMsg) {
-                waTextarea.classList.add('wa-shake');
-                setTimeout(() => waTextarea.classList.remove('wa-shake'), 500);
                 waTextarea.focus();
                 return;
             }
@@ -217,18 +211,6 @@ document.addEventListener('DOMContentLoaded', () => {
         waFab.style.pointerEvents = 'none';
         waFab.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
     }
-
-    // ========================= PARALLAX EFFECT ON HERO SHAPES =========================
-    const heroShapes = document.querySelectorAll('.hero-bg-shapes .shape');
-    window.addEventListener('scroll', () => {
-        const scrolled = window.scrollY;
-        if (scrolled < window.innerHeight) {
-            heroShapes.forEach((shape, i) => {
-                const speed = (i + 1) * 0.15;
-                shape.style.transform = `translateY(${scrolled * speed}px)`;
-            });
-        }
-    });
 
     // ========================= TYPING EFFECT ON HERO TAG =========================
     const heroTag = document.querySelector('.hero-tag');
