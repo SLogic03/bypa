@@ -428,11 +428,67 @@
         </div>
     </footer>
 
-    <!-- ========== FLOATING WHATSAPP ========== -->
-    <a href="https://wa.me/593963528767?text=Hola%20Byron%20mi%20nombre%20es%20.......%20he%20decidido%20dar%20el%20primer%20paso%20%F0%9F%9A%80%20y%20me%20interesa%20coordinar%20una%20reuni%C3%B3n%20para%20hablar%20sobre%20tus%20mentor%C3%ADas%20y/o%20el%20entrenamiento%20asertivo%20%F0%9F%A4%9D." target="_blank" rel="noopener" class="whatsapp-float" id="whatsappFloat" aria-label="Contactar por WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-        <span class="whatsapp-pulse"></span>
-    </a>
+    <!-- ========== WHATSAPP CHATBOX WIDGET ========== -->
+    <div class="wa-widget" id="waWidget">
+        <!-- Floating Action Button -->
+        <button class="wa-fab" id="waFab" aria-label="Abrir chat de WhatsApp">
+            <i class="fab fa-whatsapp wa-fab-icon-open"></i>
+            <i class="fas fa-times wa-fab-icon-close"></i>
+            <span class="wa-fab-pulse"></span>
+            <span class="wa-fab-badge">1</span>
+        </button>
+
+        <!-- Chatbox -->
+        <div class="wa-chatbox" id="waChatbox">
+            <!-- Header -->
+            <div class="wa-chatbox-header">
+                <div class="wa-chatbox-avatar">
+                    <i class="fas fa-headset"></i>
+                    <span class="wa-online-dot"></span>
+                </div>
+                <div class="wa-chatbox-info">
+                    <span class="wa-chatbox-name">Ana</span>
+                    <span class="wa-chatbox-role">Asistente Virtual</span>
+                </div>
+                <button class="wa-chatbox-close" id="waChatboxClose" aria-label="Cerrar chat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Body -->
+            <div class="wa-chatbox-body">
+                <div class="wa-msg-bubble">
+                    <p>¡Hola! 👋 Soy <strong>Ana</strong>, la asistente virtual de <strong>Byron Altamirano</strong>. ¿En qué puedo ayudarte?</p>
+                    <span class="wa-msg-time">Justo ahora</span>
+                </div>
+
+                <div class="wa-quick-options">
+                    <p class="wa-quick-label">Elige una opción:</p>
+                    <button class="wa-quick-btn" data-msg="Marketing para psicólogos">
+                        <i class="fas fa-bullhorn"></i> Marketing para psicólogos
+                    </button>
+                    <button class="wa-quick-btn" data-msg="Entrenamiento asertivo">
+                        <i class="fas fa-dumbbell"></i> Entrenamiento asertivo
+                    </button>
+                    <button class="wa-quick-btn" data-msg="Colaboraciones">
+                        <i class="fas fa-handshake"></i> Colaboraciones
+                    </button>
+                </div>
+
+                <div class="wa-custom-msg">
+                    <textarea class="wa-textarea" id="waTextarea" placeholder="O escribe tu mensaje personalizado..." rows="3"></textarea>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="wa-chatbox-footer">
+                <button class="wa-send-btn" id="waSendBtn">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>Chatear por WhatsApp</span>
+                </button>
+            </div>
+        </div>
+    </div>
 
     <script src="./script.js"></script>
 </body>

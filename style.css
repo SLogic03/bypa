@@ -1391,43 +1391,438 @@ ul { list-style: none; }
     transform: translateY(-2px);
 }
 
-/* ========================= FLOATING WHATSAPP ========================= */
-.whatsapp-float {
+/* ========================= WHATSAPP CHATBOX WIDGET ========================= */
+.wa-widget {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    width: 60px;
-    height: 60px;
-    background: var(--whatsapp);
-    color: var(--white);
+    z-index: 9999;
+    font-family: var(--font-primary);
+}
+
+/* --- FAB Button --- */
+.wa-fab {
+    width: 62px;
+    height: 62px;
     border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: var(--white);
+    font-size: 1.9rem;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.8rem;
-    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-    z-index: 999;
-    transition: var(--transition);
+    position: relative;
+    box-shadow: 0 6px 24px rgba(37, 211, 102, 0.45);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+    z-index: 10;
 }
 
-.whatsapp-float:hover {
-    transform: scale(1.1) translateY(-4px);
-    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
+.wa-fab:hover {
+    transform: scale(1.12) translateY(-3px);
+    box-shadow: 0 10px 35px rgba(37, 211, 102, 0.55);
 }
 
-.whatsapp-pulse {
+.wa-fab-icon-close {
+    display: none;
+    font-size: 1.5rem;
+}
+
+.wa-fab.active .wa-fab-icon-open { display: none; }
+.wa-fab.active .wa-fab-icon-close { display: block; }
+.wa-fab.active {
+    background: linear-gradient(135deg, #6535E0, #7C4DFF);
+    box-shadow: 0 6px 24px rgba(124, 77, 255, 0.45);
+}
+.wa-fab.active:hover {
+    box-shadow: 0 10px 35px rgba(124, 77, 255, 0.55);
+}
+
+/* Pulse ring */
+.wa-fab-pulse {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     border-radius: 50%;
-    background: var(--whatsapp);
-    animation: waPulse 2s infinite;
+    background: rgba(37, 211, 102, 0.4);
+    animation: waFabPulse 2s ease-out infinite;
     z-index: -1;
+    pointer-events: none;
 }
 
-@keyframes waPulse {
-    0% { transform: scale(1); opacity: 0.6; }
-    100% { transform: scale(1.6); opacity: 0; }
+.wa-fab.active .wa-fab-pulse { display: none; }
+
+@keyframes waFabPulse {
+    0%   { transform: scale(1);   opacity: 0.6; }
+    100% { transform: scale(1.7); opacity: 0; }
+}
+
+/* Badge */
+.wa-fab-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    width: 22px;
+    height: 22px;
+    background: #FF3B30;
+    color: var(--white);
+    border-radius: 50%;
+    font-size: 0.7rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--white);
+    animation: waBadgeBounce 2s ease-in-out infinite;
+}
+
+@keyframes waBadgeBounce {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.15); }
+}
+
+/* --- Chatbox --- */
+.wa-chatbox {
+    position: absolute;
+    bottom: 78px;
+    right: 0;
+    width: 370px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--white);
+    box-shadow: 0 12px 60px rgba(0, 0, 0, 0.18), 0 2px 8px rgba(0, 0, 0, 0.08);
+    transform: scale(0.85) translateY(20px);
+    transform-origin: bottom right;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+                opacity 0.3s ease,
+                visibility 0.3s ease;
+}
+
+.wa-chatbox.open {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* Chatbox Header */
+.wa-chatbox-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 20px;
+    background: linear-gradient(135deg, #6535E0 0%, #7C4DFF 50%, #9B6DFF 100%);
+    color: var(--white);
+    position: relative;
+}
+
+.wa-chatbox-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    position: relative;
+    backdrop-filter: blur(8px);
+}
+
+.wa-online-dot {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 11px;
+    height: 11px;
+    background: #25D366;
+    border-radius: 50%;
+    border: 2px solid #6535E0;
+}
+
+.wa-chatbox-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+}
+
+.wa-chatbox-name {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.wa-chatbox-role {
+    font-size: 0.78rem;
+    opacity: 0.8;
+    letter-spacing: 0.3px;
+}
+
+.wa-chatbox-close {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--white);
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+    flex-shrink: 0;
+}
+
+.wa-chatbox-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Chatbox Body */
+.wa-chatbox-body {
+    padding: 20px 18px 14px;
+    background: #ECE5DD url('data:image/svg+xml,\
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" opacity="0.04">\
+      <text x="10" y="30" font-size="20">💬</text>\
+      <text x="80" y="70" font-size="16">🧠</text>\
+      <text x="150" y="40" font-size="18">✨</text>\
+      <text x="40" y="120" font-size="14">📱</text>\
+      <text x="120" y="150" font-size="20">💡</text>\
+      <text x="20" y="180" font-size="16">🎯</text>\
+      <text x="160" y="110" font-size="14">🌟</text>\
+    </svg>');
+    max-height: 360px;
+    overflow-y: auto;
+}
+
+/* Welcome bubble */
+.wa-msg-bubble {
+    background: var(--white);
+    border-radius: 0 16px 16px 16px;
+    padding: 14px 18px;
+    margin-bottom: 16px;
+    position: relative;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    animation: waBubbleIn 0.5s ease 0.2s both;
+}
+
+.wa-msg-bubble::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -8px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 8px 10px 0;
+    border-color: transparent var(--white) transparent transparent;
+}
+
+.wa-msg-bubble p {
+    font-size: 0.92rem;
+    color: var(--text-dark);
+    line-height: 1.55;
+    margin: 0;
+}
+
+.wa-msg-bubble strong {
+    color: var(--primary);
+}
+
+.wa-msg-time {
+    display: block;
+    text-align: right;
+    font-size: 0.7rem;
+    color: var(--text-light);
+    margin-top: 6px;
+}
+
+@keyframes waBubbleIn {
+    from { transform: translateY(10px) scale(0.95); opacity: 0; }
+    to   { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* Quick Options */
+.wa-quick-options {
+    margin-bottom: 14px;
+    animation: waBubbleIn 0.5s ease 0.45s both;
+}
+
+.wa-quick-label {
+    font-size: 0.78rem;
+    color: var(--text-light);
+    margin-bottom: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.wa-quick-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 11px 16px;
+    margin-bottom: 8px;
+    border-radius: 12px;
+    border: 1.5px solid rgba(124, 77, 255, 0.25);
+    background: var(--white);
+    color: var(--text-dark);
+    font-size: 0.88rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-align: left;
+    font-family: var(--font-primary);
+}
+
+.wa-quick-btn i {
+    color: var(--primary);
+    font-size: 0.85rem;
+    width: 18px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.wa-quick-btn:hover {
+    background: rgba(124, 77, 255, 0.06);
+    border-color: var(--primary);
+    transform: translateX(4px);
+}
+
+.wa-quick-btn.selected {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: var(--white);
+    box-shadow: 0 4px 16px rgba(124, 77, 255, 0.3);
+}
+
+.wa-quick-btn.selected i {
+    color: var(--white);
+}
+
+/* Textarea */
+.wa-custom-msg {
+    animation: waBubbleIn 0.5s ease 0.6s both;
+}
+
+.wa-textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 14px;
+    border: 1.5px solid rgba(0, 0, 0, 0.1);
+    background: var(--white);
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    resize: none;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    line-height: 1.5;
+}
+
+.wa-textarea::placeholder {
+    color: var(--text-light);
+    font-size: 0.85rem;
+}
+
+.wa-textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(124, 77, 255, 0.12);
+}
+
+/* Shake animation for empty textarea */
+.wa-shake {
+    animation: waShake 0.4s ease;
+    border-color: #FF3B30 !important;
+}
+
+@keyframes waShake {
+    0%, 100% { transform: translateX(0); }
+    20%      { transform: translateX(-6px); }
+    40%      { transform: translateX(6px); }
+    60%      { transform: translateX(-4px); }
+    80%      { transform: translateX(4px); }
+}
+
+/* Chatbox Footer */
+.wa-chatbox-footer {
+    padding: 14px 18px 18px;
+    background: var(--white);
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.wa-send-btn {
+    width: 100%;
+    padding: 14px 24px;
+    border-radius: 14px;
+    border: none;
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    color: var(--white);
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 18px rgba(37, 211, 102, 0.3);
+    letter-spacing: 0.3px;
+}
+
+.wa-send-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(37, 211, 102, 0.4);
+}
+
+.wa-send-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.wa-send-btn i {
+    font-size: 1.25rem;
+}
+
+/* --- Chatbox Responsive --- */
+@media (max-width: 480px) {
+    .wa-widget {
+        bottom: 16px;
+        right: 16px;
+    }
+
+    .wa-fab {
+        width: 56px;
+        height: 56px;
+        font-size: 1.7rem;
+    }
+
+    .wa-chatbox {
+        width: calc(100vw - 32px);
+        right: 0;
+        bottom: 72px;
+        border-radius: 16px;
+    }
+
+    .wa-chatbox-header {
+        padding: 14px 16px;
+    }
+
+    .wa-chatbox-body {
+        padding: 16px 14px 12px;
+        max-height: 300px;
+    }
+
+    .wa-chatbox-footer {
+        padding: 12px 14px 14px;
+    }
 }
 
 /* ========================= RESPONSIVE ========================= */

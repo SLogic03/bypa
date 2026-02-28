@@ -129,23 +129,93 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ========================= WHATSAPP FLOAT VISIBILITY =========================
-    const whatsappFloat = document.getElementById('whatsappFloat');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 400) {
-            whatsappFloat.style.opacity = '1';
-            whatsappFloat.style.pointerEvents = 'auto';
-        } else {
-            whatsappFloat.style.opacity = '0';
-            whatsappFloat.style.pointerEvents = 'none';
+    // ========================= WHATSAPP CHATBOX WIDGET =========================
+    const waFab = document.getElementById('waFab');
+    const waChatbox = document.getElementById('waChatbox');
+    const waClose = document.getElementById('waChatboxClose');
+    const waTextarea = document.getElementById('waTextarea');
+    const waSendBtn = document.getElementById('waSendBtn');
+    const waQuickBtns = document.querySelectorAll('.wa-quick-btn');
+    const waBadge = document.querySelector('.wa-fab-badge');
+    const waWidget = document.getElementById('waWidget');
+    let waChatboxOpen = false;
+
+    function toggleChatbox() {
+        waChatboxOpen = !waChatboxOpen;
+        waChatbox.classList.toggle('open', waChatboxOpen);
+        waFab.classList.toggle('active', waChatboxOpen);
+        if (waChatboxOpen && waBadge) {
+            waBadge.style.display = 'none';
+        }
+    }
+
+    if (waFab) waFab.addEventListener('click', toggleChatbox);
+    if (waClose) waClose.addEventListener('click', toggleChatbox);
+
+    // Close chatbox on click outside
+    document.addEventListener('click', (e) => {
+        if (waChatboxOpen && waWidget && !waWidget.contains(e.target)) {
+            toggleChatbox();
         }
     });
 
-    // Initially hidden
-    if (whatsappFloat) {
-        whatsappFloat.style.opacity = '0';
-        whatsappFloat.style.pointerEvents = 'none';
-        whatsappFloat.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+    // Send button → open WhatsApp
+    let waSelectedQuickOption = null;
+
+    // Quick option buttons
+    waQuickBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            waQuickBtns.forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            waSelectedQuickOption = btn.dataset.msg;
+            waTextarea.value = btn.dataset.msg;
+            waTextarea.focus();
+        });
+    });
+
+    // Clear quick option tracking when user types manually
+    if (waTextarea) {
+        waTextarea.addEventListener('input', () => {
+            if (waTextarea.value.trim() !== waSelectedQuickOption) {
+                waSelectedQuickOption = null;
+                waQuickBtns.forEach(b => b.classList.remove('selected'));
+            }
+        });
+    }
+
+    if (waSendBtn) {
+        waSendBtn.addEventListener('click', () => {
+            const userMsg = waTextarea.value.trim();
+            if (!userMsg) {
+                waTextarea.classList.add('wa-shake');
+                setTimeout(() => waTextarea.classList.remove('wa-shake'), 500);
+                waTextarea.focus();
+                return;
+            }
+            // If a quick option was selected, wrap it; otherwise send raw message
+            const fullMsg = waSelectedQuickOption
+                ? `Hola, me interesa: ${userMsg}`
+                : userMsg;
+            const url = `https://wa.me/593963528767?text=${encodeURIComponent(fullMsg)}`;
+            window.open(url, '_blank');
+        });
+    }
+
+    // Show FAB after scrolling past hero
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+            waFab.style.opacity = '1';
+            waFab.style.pointerEvents = 'auto';
+        } else {
+            waFab.style.opacity = '0';
+            waFab.style.pointerEvents = 'none';
+            if (waChatboxOpen) toggleChatbox();
+        }
+    });
+    if (waFab) {
+        waFab.style.opacity = '0';
+        waFab.style.pointerEvents = 'none';
+        waFab.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
     }
 
     // ========================= PARALLAX EFFECT ON HERO SHAPES =========================
