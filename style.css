@@ -395,6 +395,16 @@ ul {
     background-repeat: no-repeat;
     z-index: 1;
     transform: scale(1.15) translateY(40px);
+    animation: kenBurns 20s ease-in-out infinite alternate;
+}
+
+@keyframes kenBurns {
+    0% {
+        transform: scale(1.15) translateY(40px) translateX(0);
+    }
+    100% {
+        transform: scale(1.25) translateY(20px) translateX(-20px);
+    }
 }
 
 .hero-overlay {
@@ -530,6 +540,9 @@ ul {
     font-weight: 900;
     line-height: 1.05;
     color: var(--white);
+    overflow: hidden;
+    white-space: nowrap;
+    min-height: 1.1em;
 }
 
 .hero-name-line.accent {
@@ -537,6 +550,21 @@ ul {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+}
+
+.hero-name-line.typing-cursor::after {
+    content: '|';
+    display: inline-block;
+    color: var(--white);
+    -webkit-text-fill-color: var(--white);
+    animation: cursorBlink 0.7s step-end infinite;
+    margin-left: 2px;
+    font-weight: 300;
+}
+
+@keyframes cursorBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
 }
 
 .hero-subtitle {

@@ -212,21 +212,44 @@ document.addEventListener('DOMContentLoaded', () => {
         waFab.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
     }
 
-    // ========================= TYPING EFFECT ON HERO TAG =========================
-    const heroTag = document.querySelector('.hero-tag');
-    if (heroTag) {
-        const text = heroTag.textContent;
-        heroTag.textContent = '';
-        heroTag.style.opacity = '1';
-        let i = 0;
-        function typeWriter() {
-            if (i < text.length) {
-                heroTag.textContent += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 50);
+    // ========================= TYPING EFFECT ON HERO NAME =========================
+    const heroNameLines = document.querySelectorAll('.hero-name-line');
+    if (heroNameLines.length > 0) {
+        const linesData = [];
+        heroNameLines.forEach(line => {
+            linesData.push({
+                el: line,
+                text: line.textContent.trim(),
+                isAccent: line.classList.contains('accent')
+            });
+            line.textContent = '';
+        });
+
+        function typeLine(lineIndex) {
+            if (lineIndex >= linesData.length) return;
+            const { el, text, isAccent } = linesData[lineIndex];
+            el.classList.add('typing-cursor');
+            let i = 0;
+
+            function typeChar() {
+                if (i < text.length) {
+                    el.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeChar, 80);
+                } else {
+                    // Remove cursor from current line
+                    el.classList.remove('typing-cursor');
+                    // Start next line after a short pause
+                    if (lineIndex < linesData.length - 1) {
+                        setTimeout(() => typeLine(lineIndex + 1), 300);
+                    }
+                }
             }
+            typeChar();
         }
-        setTimeout(typeWriter, 800);
+
+        // Start typing after a brief delay
+        setTimeout(() => typeLine(0), 600);
     }
 
     // ========================= VIDEO CAROUSEL =========================
