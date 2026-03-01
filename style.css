@@ -1879,22 +1879,13 @@ ul {
 /* ========================= CITAS / QUOTES (Peterson-style) ========================= */
 .citas {
     padding: 100px 0;
-    background: var(--secondary);
+    background: var(--light);
     position: relative;
     overflow: hidden;
 }
 
 .citas::before {
-    content: '';
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    background: var(--primary);
-    filter: blur(250px);
-    opacity: 0.06;
-    top: -200px;
-    left: -150px;
-    border-radius: 50%;
+    display: none;
 }
 
 .citas-content {
@@ -1910,7 +1901,7 @@ ul {
     font-size: clamp(1.6rem, 3.5vw, 2.6rem);
     font-weight: 500;
     font-style: italic;
-    color: var(--white);
+    color: var(--text-dark);
     line-height: 1.5;
     margin-bottom: 32px;
     position: relative;
@@ -1924,21 +1915,21 @@ ul {
 .cita-author {
     font-size: 1rem;
     font-weight: 600;
-    color: var(--accent);
+    color: var(--primary);
     text-transform: uppercase;
     letter-spacing: 3px;
 }
 
 .cita-role {
     font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.4);
+    color: var(--text-light);
     margin-top: 4px;
 }
 
 .cita-divider {
     width: 50px;
     height: 2px;
-    background: var(--accent);
+    background: var(--primary);
     margin: 24px auto;
     border-radius: 2px;
 }
