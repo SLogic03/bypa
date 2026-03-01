@@ -391,7 +391,7 @@ ul {
     position: absolute;
     inset: 0;
     background-size: cover;
-    background-position: center 20%;
+    background-position: center 35%;
     background-repeat: no-repeat;
     z-index: 1;
     transform: scale(1.08);
@@ -414,7 +414,7 @@ ul {
     justify-content: flex-start;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 140px 24px 80px;
+    padding: 180px 24px 80px;
     min-height: 100vh;
     position: relative;
     z-index: 3;
