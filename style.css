@@ -770,22 +770,43 @@ ul {
 /* ========================= STATS ========================= */
 .stats {
     padding: 120px 0;
-    background: var(--light);
+    background: var(--dark-blue);
     position: relative;
+    overflow: hidden;
+}
+
+.stats::before {
+    content: '';
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    background: var(--primary);
+    filter: blur(300px);
+    opacity: 0.04;
+    bottom: -300px;
+    right: -200px;
+    border-radius: 50%;
+}
+
+.stats .section-header {
+    position: relative;
+    z-index: 2;
 }
 
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
+    position: relative;
+    z-index: 2;
 }
 
 .stat-card {
-    background: var(--white);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: var(--radius-lg);
     padding: 40px 28px;
     text-align: center;
-    border: 1px solid rgba(0, 0, 0, 0.04);
     transition: var(--transition);
     position: relative;
     overflow: hidden;
@@ -797,15 +818,17 @@ ul {
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
-    background: var(--primary);
+    height: 3px;
+    background: var(--gradient-primary);
     transform: scaleX(0);
     transition: transform 0.4s ease;
 }
 
 .stat-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(59, 130, 246, 0.3);
     transform: translateY(-8px);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--blue-glow);
 }
 
 .stat-card:hover::before {
@@ -813,22 +836,27 @@ ul {
 }
 
 .stat-icon {
-    width: 60px;
-    height: 60px;
-    margin: 0 auto 20px;
-    background: rgba(30, 64, 175, 0.08);
-    border-radius: 50%;
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 24px;
+    background: var(--gradient-primary);
+    border-radius: var(--radius-md);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.4rem;
-    color: var(--primary);
+    font-size: 1.6rem;
+    color: var(--white);
+    transition: transform var(--transition);
+}
+
+.stat-card:hover .stat-icon {
+    transform: scale(1.1) rotate(-3deg);
 }
 
 .stat-number {
     font-size: 3.5rem;
     font-weight: 900;
-    color: var(--primary);
+    color: var(--white);
     line-height: 1;
 }
 
@@ -843,7 +871,7 @@ ul {
 
 .stat-label {
     font-size: 0.88rem;
-    color: var(--text-body);
+    color: rgba(255, 255, 255, 0.5);
     line-height: 1.5;
 }
 
