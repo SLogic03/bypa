@@ -381,6 +381,76 @@ ul {
     padding: 120px 0 80px;
 }
 
+/* Fullscreen Hero with Background Image */
+.hero-fullscreen {
+    padding: 0;
+    justify-content: center;
+}
+
+.hero-bg-image {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right,
+            rgba(0, 0, 0, 0.85) 0%,
+            rgba(0, 0, 0, 0.6) 40%,
+            rgba(0, 0, 0, 0.3) 70%,
+            rgba(0, 0, 0, 0.15) 100%);
+    z-index: 2;
+}
+
+.hero-container-fullscreen {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 140px 24px 80px;
+    min-height: 100vh;
+    position: relative;
+    z-index: 3;
+    grid-template-columns: 1fr;
+}
+
+.hero-content-centered {
+    max-width: 600px;
+}
+
+.hero-badge-inline {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 24px;
+    background: rgba(30, 64, 175, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 100px;
+    margin-bottom: 32px;
+}
+
+.hero-badge-inline .badge-number {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--accent);
+}
+
+.hero-badge-inline .badge-label {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
 .hero-bg-shapes .shape {
     position: absolute;
     border-radius: 50%;
@@ -2147,17 +2217,21 @@ ul {
         order: 2;
     }
 
-    .hero-image {
-        order: 1;
+    .hero-overlay {
+        background: linear-gradient(to top,
+                rgba(0, 0, 0, 0.9) 0%,
+                rgba(0, 0, 0, 0.6) 50%,
+                rgba(0, 0, 0, 0.3) 100%);
     }
 
-    .hero-img-wrapper {
-        width: 260px;
-        height: 260px;
+    .hero-container-fullscreen {
+        align-items: flex-end;
+        padding-bottom: 100px;
+        text-align: center;
     }
 
-    .hero-subtitle {
-        margin: 0 auto 36px;
+    .hero-content-centered {
+        max-width: 100%;
     }
 
     .hero-buttons {
@@ -2168,23 +2242,8 @@ ul {
         justify-content: center;
     }
 
-    .hero-badge {
-        right: 50%;
-        left: 50%;
-        transform: translate(-50%, 0);
-        bottom: -32px;
-        padding: 10px 16px;
-        min-width: 120px;
-        font-size: 0.95rem;
-        z-index: 2;
-    }
-
-    .badge-number {
-        font-size: 1.1rem;
-    }
-
-    .badge-label {
-        font-size: 0.65rem;
+    .hero-badge-inline {
+        margin-bottom: 24px;
     }
 
     .about-grid {
