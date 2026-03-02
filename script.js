@@ -296,8 +296,9 @@ document.addEventListener('DOMContentLoaded', () => {
             typeChar();
         }
 
-        // Start typing after a brief delay
-        setTimeout(() => typeLine(0), 600);
+        // Start typing after splash finishes (splash ~2.1s total)
+        const splashDelay = document.getElementById('splash') ? 2400 : 600;
+        setTimeout(() => typeLine(0), splashDelay);
     }
 
     // ========================= VIDEO CAROUSEL =========================
