@@ -1276,6 +1276,8 @@ ul {
 
 .servicio-features li strong {
     color: var(--text-dark);
+    display: block;
+    margin-bottom: 2px;
 }
 
 .servicio-note {
