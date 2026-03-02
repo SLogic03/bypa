@@ -4,6 +4,54 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    // ========================= SPLASH INTRO (Shrink to Navbar) =========================
+    const splash = document.getElementById('splash');
+    if (splash) {
+        document.body.classList.add('splash-active');
+        const splashLogo = splash.querySelector('.splash-logo');
+        const navbarLogo = document.querySelector('.nav-logo .logo-img');
+
+        // Fase 1: Logo aparece centrado (~1.4s)
+        setTimeout(() => {
+            // Calcular posiciones ANTES de tocar nada
+            const navRect = navbarLogo.getBoundingClientRect();
+            const splashRect = splashLogo.getBoundingClientRect();
+
+            // Calcular escala final (tamaño navbar / tamaño splash)
+            const targetHeight = 75;
+            const currentHeight = splashRect.height;
+            const scale = targetHeight / currentHeight;
+
+            // Calcular traslación al punto del navbar logo
+            const dx = navRect.left + navRect.width / 2 - (splashRect.left + splashRect.width / 2);
+            const dy = navRect.top + navRect.height / 2 - (splashRect.top + splashRect.height / 2);
+
+            // Paso A: Fijar estado actual como inline (reemplaza la animación)
+            splashLogo.style.opacity = '1';
+            splashLogo.style.transform = 'scale(1)';
+
+            // Paso B: Quitar animación y activar transición
+            splashLogo.classList.add('shrink');
+
+            // Paso C: Forzar reflow para que el navegador registre el punto de inicio
+            void splashLogo.offsetHeight;
+
+            // Paso D: Ahora sí, mover al destino (esto se anima con la transición)
+            splashLogo.style.transform = `translate(${dx}px, ${dy}px) scale(${scale})`;
+
+            // Fase 3: Desvanecer fondo y mostrar navbar
+            setTimeout(() => {
+                splash.classList.add('fade-bg');
+                document.body.classList.remove('splash-active');
+            }, 700);
+
+            // Limpiar splash del DOM
+            setTimeout(() => {
+                splash.remove();
+            }, 1600);
+        }, 1400);
+    }
+
     // ========================= NAVBAR =========================
     const navbar = document.getElementById('navbar');
     const navToggle = document.getElementById('navToggle');
