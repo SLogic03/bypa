@@ -290,6 +290,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Start next line after a short pause
                     if (lineIndex < linesData.length - 1) {
                         setTimeout(() => typeLine(lineIndex + 1), 300);
+                    } else {
+                        // Typing finished — show tagline
+                        const tagline = document.querySelector('.hero-tagline');
+                        if (tagline) {
+                            setTimeout(() => tagline.classList.add('visible'), 300);
+                        }
                     }
                 }
             }
