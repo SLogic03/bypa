@@ -3,20 +3,20 @@ backend:
   repo: phillow7474/pageByronAltamirano
   branch: master
 
+local_backend: true
+
 media_folder: "public/assets/img"
 public_folder: "/assets/img"
 
-local_backend: true
-
 collections:
-  - name: "site-data"
-    label: "Contenido del Sitio"
+  - name: "settings"
+    label: "Configuración del Sitio"
     files:
       - name: "site-data"
-        label: "Datos Generales"
+        label: "Contenido del Sitio"
         file: "src/data/site-data.json"
+        format: "json"
         fields:
-          # ===== HERO =====
           - label: "Hero (Portada)"
             name: "hero"
             widget: "object"
@@ -25,9 +25,8 @@ collections:
               - { label: "Apellido", name: "apellido", widget: "string" }
               - { label: "Subtítulo Superior", name: "taglineTop", widget: "string" }
               - { label: "Subtítulo Inferior", name: "taglineBottom", widget: "string" }
-              - { label: "Imagen de Fondo", name: "heroImage", widget: "image" }
+              - { label: "Imagen de Fondo", name: "heroImage", widget: "string" }
 
-          # ===== CITA =====
           - label: "Cita Principal"
             name: "cita"
             widget: "object"
@@ -36,106 +35,99 @@ collections:
               - { label: "Autor", name: "autor", widget: "string" }
               - { label: "Rol del Autor", name: "rol", widget: "string" }
 
-          # ===== STATS =====
-          - label: "Estadísticas (Impacto Real)"
+          - label: "Estadísticas"
             name: "stats"
             widget: "object"
             fields:
-              - { label: "Etiqueta de Sección", name: "sectionTag", widget: "string" }
-              - { label: "Título de Sección", name: "sectionTitle", widget: "string" }
-              - { label: "Descripción de Sección", name: "sectionDesc", widget: "string" }
-              - label: "Estadísticas"
+              - { label: "Etiqueta", name: "sectionTag", widget: "string" }
+              - { label: "Título", name: "sectionTitle", widget: "string" }
+              - { label: "Descripción", name: "sectionDesc", widget: "string" }
+              - label: "Lista de Stats"
                 name: "items"
                 widget: "list"
                 fields:
-                  - { label: "Ícono (clase FontAwesome)", name: "icon", widget: "string" }
-                  - { label: "Número", name: "count", widget: "number" }
-                  - { label: "Unidad (Millones, Mil, %)", name: "unit", widget: "string" }
+                  - { label: "Ícono", name: "icon", widget: "string" }
+                  - { label: "Número", name: "count", widget: "number", value_type: "int" }
+                  - { label: "Unidad", name: "unit", widget: "string" }
                   - { label: "Descripción", name: "label", widget: "string" }
 
-          # ===== SERVICIOS =====
           - label: "Servicios"
             name: "servicios"
             widget: "object"
             fields:
-              - { label: "Etiqueta de Sección", name: "sectionTag", widget: "string" }
+              - { label: "Etiqueta", name: "sectionTag", widget: "string" }
               - { label: "Título", name: "sectionTitle", widget: "string" }
               - { label: "Título Resaltado", name: "sectionTitleHighlight", widget: "string" }
               - label: "Lista de Servicios"
                 name: "items"
                 widget: "list"
                 fields:
-                  - { label: "Ícono (clase FontAwesome)", name: "icon", widget: "string" }
-                  - { label: "Nombre del Servicio", name: "nombre", widget: "string" }
+                  - { label: "Ícono", name: "icon", widget: "string" }
+                  - { label: "Nombre", name: "nombre", widget: "string" }
                   - label: "Características"
                     name: "features"
                     widget: "list"
                     fields:
                       - { label: "Título", name: "titulo", widget: "string" }
                       - { label: "Descripción", name: "texto", widget: "text" }
-                  - { label: "Nota Adicional", name: "nota", widget: "string", required: false }
-                  - { label: "Texto del Botón", name: "ctaTexto", widget: "string" }
-                  - { label: "Link del Botón (WhatsApp)", name: "ctaLink", widget: "string" }
+                  - { label: "Nota", name: "nota", widget: "string", required: false }
+                  - { label: "Texto Botón", name: "ctaTexto", widget: "string" }
+                  - { label: "Link Botón", name: "ctaLink", widget: "string" }
 
-          # ===== PILARES =====
-          - label: "Pilares de Transformación"
+          - label: "Pilares"
             name: "pilares"
             widget: "object"
             fields:
-              - { label: "Etiqueta de Sección", name: "sectionTag", widget: "string" }
+              - { label: "Etiqueta", name: "sectionTag", widget: "string" }
               - { label: "Título", name: "sectionTitle", widget: "string" }
               - { label: "Título Resaltado", name: "sectionTitleHighlight", widget: "string" }
-              - { label: "Descripción de Sección", name: "sectionDesc", widget: "string" }
+              - { label: "Descripción", name: "sectionDesc", widget: "string" }
               - label: "Lista de Pilares"
                 name: "items"
                 widget: "list"
                 fields:
-                  - { label: "Ícono (clase FontAwesome)", name: "icon", widget: "string" }
+                  - { label: "Ícono", name: "icon", widget: "string" }
                   - { label: "Título", name: "titulo", widget: "string" }
                   - { label: "Descripción", name: "texto", widget: "text" }
 
-          # ===== ABOUT =====
           - label: "Sobre Mí"
             name: "about"
             widget: "object"
             fields:
-              - { label: "Etiqueta de Sección", name: "sectionTag", widget: "string" }
-              - { label: "Título de Sección", name: "sectionTitle", widget: "string" }
-              - { label: "Foto de Perfil", name: "aboutImage", widget: "image" }
-              - label: "Párrafos (admite HTML)"
+              - { label: "Etiqueta", name: "sectionTag", widget: "string" }
+              - { label: "Título", name: "sectionTitle", widget: "string" }
+              - { label: "Foto", name: "aboutImage", widget: "string" }
+              - label: "Párrafos"
                 name: "parrafos"
                 widget: "list"
                 field: { label: "Párrafo", name: "parrafo", widget: "text" }
               - { label: "Frase Destacada", name: "destacado", widget: "string" }
 
-          # ===== CTA BANNER =====
-          - label: "Banner de Acción"
+          - label: "Banner CTA"
             name: "ctaBanner"
             widget: "object"
             fields:
               - { label: "Título", name: "titulo", widget: "string" }
               - { label: "Texto", name: "texto", widget: "string" }
 
-          # ===== CONTACTO =====
           - label: "Contacto"
             name: "contacto"
             widget: "object"
             fields:
-              - { label: "Etiqueta de Sección", name: "sectionTag", widget: "string" }
-              - { label: "Título de Sección", name: "sectionTitle", widget: "string" }
+              - { label: "Etiqueta", name: "sectionTag", widget: "string" }
+              - { label: "Título", name: "sectionTitle", widget: "string" }
               - label: "WhatsApp"
                 name: "whatsapp"
                 widget: "object"
                 fields:
-                  - { label: "Número (sin +)", name: "numero", widget: "string" }
-                  - { label: "Mensaje predeterminado (URL encoded)", name: "mensaje", widget: "text" }
+                  - { label: "Número", name: "numero", widget: "string" }
+                  - { label: "Mensaje (URL encoded)", name: "mensaje", widget: "text" }
               - { label: "Email", name: "email", widget: "string" }
               - { label: "Link Instagram", name: "instagram", widget: "string" }
               - { label: "Usuario Instagram", name: "instagramUser", widget: "string" }
               - { label: "Link TikTok", name: "tiktok", widget: "string" }
               - { label: "Usuario TikTok", name: "tiktokUser", widget: "string" }
 
-          # ===== FOOTER =====
           - label: "Pie de Página"
             name: "footer"
             widget: "object"
@@ -143,18 +135,17 @@ collections:
               - { label: "Texto de Marca", name: "brandText", widget: "text" }
               - { label: "Copyright", name: "copyright", widget: "string" }
 
-          # ===== WHATSAPP WIDGET =====
-          - label: "Widget de WhatsApp"
+          - label: "Widget WhatsApp"
             name: "whatsappWidget"
             widget: "object"
             fields:
               - { label: "Nombre", name: "nombre", widget: "string" }
               - { label: "Rol", name: "rol", widget: "string" }
-              - { label: "Mensaje de Bienvenida (admite HTML)", name: "mensajeBienvenida", widget: "string" }
+              - { label: "Mensaje Bienvenida", name: "mensajeBienvenida", widget: "string" }
               - label: "Opciones Rápidas"
                 name: "opciones"
                 widget: "list"
                 fields:
-                  - { label: "Ícono (clase FontAwesome)", name: "icon", widget: "string" }
-                  - { label: "Texto visible", name: "texto", widget: "string" }
-                  - { label: "Mensaje para WhatsApp", name: "msg", widget: "string" }
+                  - { label: "Ícono", name: "icon", widget: "string" }
+                  - { label: "Texto", name: "texto", widget: "string" }
+                  - { label: "Mensaje", name: "msg", widget: "string" }

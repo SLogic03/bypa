@@ -6,10 +6,125 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <title>Panel de Administración - Byron Altamirano</title>
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .admin-topbar {
+            background: linear-gradient(135deg, #0a0a0f 0%, #12121a 40%, #1a1a2e 70%, #252545 100%);
+            border-bottom: 1px solid rgba(65, 105, 225, 0.3);
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 99999;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .admin-topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .admin-topbar-logo {
+            height: 36px;
+            filter: brightness(1.1);
+        }
+
+        .admin-topbar-divider {
+            width: 1px;
+            height: 28px;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .admin-topbar-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+
+        .admin-topbar-title span {
+            color: #4169e1;
+        }
+
+        .admin-topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .admin-topbar-badge {
+            font-family: 'Inter', sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #4169e1;
+            background: rgba(65, 105, 225, 0.12);
+            border: 1px solid rgba(65, 105, 225, 0.25);
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        .admin-topbar-link {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .admin-topbar-link:hover {
+            color: #fff;
+        }
+
+        .admin-topbar-link svg {
+            width: 14px;
+            height: 14px;
+        }
+    </style>
 </head>
 
 <body>
+    <!-- Custom Admin Topbar -->
+    <div class="admin-topbar">
+        <div class="admin-topbar-left">
+            <img src="/assets/img/logo.svg" alt="BA" class="admin-topbar-logo">
+            <div class="admin-topbar-divider"></div>
+            <div class="admin-topbar-title">Panel <span>Admin</span></div>
+        </div>
+        <div class="admin-topbar-right">
+            <span class="admin-topbar-badge">✦ Administrador</span>
+            <a href="/" target="_blank" class="admin-topbar-link">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                    stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+                Ver sitio web
+            </a>
+        </div>
+    </div>
+
+    <!-- Sveltia CMS -->
+    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
 </body>
 
 </html>

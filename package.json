@@ -9,5 +9,8 @@
     },
     "dependencies": {
         "astro": "^5.5.3"
+    },
+    "devDependencies": {
+        "decap-server": "^3.5.2"
     }
 }
