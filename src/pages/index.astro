@@ -1,39 +1,21 @@
-<!DOCTYPE html>
-<html lang="es">
+---
+import Layout from '../layouts/Layout.astro';
+---
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Byron Altamirano | Psicólogo Clínico & Estratega Digital</title>
-    <meta name="description"
-        content="Byron Altamirano - Psicólogo clínico, estratega digital y creador de contenido. Mentorías en marca personal y entrenamiento asertivo.">
-    <meta name="keywords"
-        content="psicólogo clínico, estratega digital, marca personal, entrenamiento asertivo, Byron Altamirano, neurociencia, salud mental">
-    <meta property="og:title" content="Byron Altamirano | Psicólogo Clínico & Estratega Digital">
-    <meta property="og:description"
-        content="Transformo el conocimiento clínico en comunidades digitales de alto impacto. +100K comunidad digital.">
-    <meta property="og:type" content="website">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="icon" type="image/svg+xml" href="./assets/img/favicon.svg">
-    <link rel="stylesheet" href="./style.css">
-</head>
-
-<body>
+<Layout
+    title="Byron Altamirano | Psicólogo Clínico & Estratega Digital"
+    description="Byron Altamirano - Psicólogo clínico, estratega digital y creador de contenido. Mentorías en marca personal y entrenamiento asertivo."
+>
     <!-- ========== SPLASH INTRO ========== -->
     <div class="splash" id="splash">
-        <img src="./assets/img/logo.svg" alt="Byron Altamirano Logo" class="splash-logo">
+        <img src="/assets/img/logo.svg" alt="Byron Altamirano Logo" class="splash-logo">
     </div>
 
     <!-- ========== NAVBAR ========== -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#hero" class="nav-logo">
-                <img src="./assets/img/logo.svg" alt="Byron Altamirano Logo" class="logo-img">
+                <img src="/assets/img/logo.svg" alt="Byron Altamirano Logo" class="logo-img">
             </a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#hero" class="nav-link active">Inicio</a></li>
@@ -50,7 +32,7 @@
 
     <!-- ========== HERO FULLSCREEN ========== -->
     <section class="hero hero-fullscreen" id="hero">
-        <div class="hero-bg-image" style="background-image: url('./assets/img/bypa_foto_hero2.svg');"></div>
+        <div class="hero-bg-image" style="background-image: url('/assets/img/bypa_foto_hero2.svg');"></div>
         <div class="hero-overlay"></div>
         <div class="hero-container hero-container-fullscreen">
             <div class="hero-content hero-content-centered" data-animate="fade-up">
@@ -276,7 +258,7 @@
                 <div class="carousel-viewport">
                     <div class="carousel-track">
                         <div class="carousel-slide">
-                            <video class="carousel-video" src="./assets/video/Bypa1.mp4" playsinline
+                            <video class="carousel-video" src="/assets/video/Bypa1.mp4" playsinline
                                 preload="metadata"></video>
                             <div class="video-overlay">
                                 <button class="video-play-btn" aria-label="Reproducir video">
@@ -285,7 +267,7 @@
                             </div>
                         </div>
                         <div class="carousel-slide">
-                            <video class="carousel-video" src="./assets/video/Bypa2.mp4" playsinline
+                            <video class="carousel-video" src="/assets/video/Bypa2.mp4" playsinline
                                 preload="metadata"></video>
                             <div class="video-overlay">
                                 <button class="video-play-btn" aria-label="Reproducir video">
@@ -294,7 +276,7 @@
                             </div>
                         </div>
                         <div class="carousel-slide">
-                            <video class="carousel-video" src="./assets/video/Bypa3.mp4" playsinline
+                            <video class="carousel-video" src="/assets/video/Bypa3.mp4" playsinline
                                 preload="metadata"></video>
                             <div class="video-overlay">
                                 <button class="video-play-btn" aria-label="Reproducir video">
@@ -303,7 +285,7 @@
                             </div>
                         </div>
                         <div class="carousel-slide">
-                            <video class="carousel-video" src="./assets/video/Bypa4.mp4" playsinline
+                            <video class="carousel-video" src="/assets/video/Bypa4.mp4" playsinline
                                 preload="metadata"></video>
                             <div class="video-overlay">
                                 <button class="video-play-btn" aria-label="Reproducir video">
@@ -312,7 +294,7 @@
                             </div>
                         </div>
                         <div class="carousel-slide">
-                            <video class="carousel-video" src="./assets/video/Bypa5.mp4" playsinline
+                            <video class="carousel-video" src="/assets/video/Bypa5.mp4" playsinline
                                 preload="metadata"></video>
                             <div class="video-overlay">
                                 <button class="video-play-btn" aria-label="Reproducir video">
@@ -336,7 +318,7 @@
             <div class="about-grid">
                 <div class="about-image" data-animate="fade-right">
                     <div class="about-img-wrapper">
-                        <img src="./assets/img/bypa_foto_sobremi.png" alt="Byron Altamirano - Sobre Mí" loading="lazy">
+                        <img src="/assets/img/bypa_foto_sobremi.png" alt="Byron Altamirano - Sobre Mí" loading="lazy">
                     </div>
                     <div class="about-img-decoration"></div>
                 </div>
@@ -377,7 +359,7 @@
         </div>
     </section>
 
-    <!-- ========== CONTACTO SECTION (fusionado con Portfolio CTA) ========== -->
+    <!-- ========== CONTACTO SECTION ========== -->
     <section class="contacto" id="contacto">
         <div class="contacto-bg-shapes">
             <div class="shape shape-4"></div>
@@ -385,7 +367,6 @@
         </div>
         <div class="container">
             <div class="contacto-content" data-animate="fade-up">
-                <!-- Contacto directo -->
                 <span class="section-tag">Hablemos</span>
                 <h2 class="cta-title">Conectemos</h2>
 
@@ -431,7 +412,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="#hero" class="nav-logo">
-                        <img src="./assets/img/logo.svg" alt="Byron Altamirano Logo" class="logo-img"
+                        <img src="/assets/img/logo.svg" alt="Byron Altamirano Logo" class="logo-img"
                             style="height:60px;">
                     </a>
                     <p>Transformo el conocimiento clínico en comunidades digitales de alto impacto. +100K de comunidad
@@ -469,15 +450,12 @@
 
     <!-- ========== WHATSAPP CHATBOX WIDGET ========== -->
     <div class="wa-widget" id="waWidget">
-        <!-- Floating Action Button -->
         <button class="wa-fab" id="waFab" aria-label="Abrir chat de WhatsApp">
             <i class="fab fa-whatsapp wa-fab-icon-open"></i>
             <i class="fas fa-times wa-fab-icon-close"></i>
         </button>
 
-        <!-- Chatbox -->
         <div class="wa-chatbox" id="waChatbox">
-            <!-- Header -->
             <div class="wa-chatbox-header">
                 <div class="wa-chatbox-avatar">
                     <i class="fas fa-headset"></i>
@@ -491,7 +469,6 @@
                 </button>
             </div>
 
-            <!-- Body -->
             <div class="wa-chatbox-body">
                 <div class="wa-msg-bubble">
                     <p>¡Hola! 👋 Soy <strong>Byron</strong>. ¿En qué te puedo ayudar?</p>
@@ -517,7 +494,6 @@
                 </div>
             </div>
 
-            <!-- Footer -->
             <div class="wa-chatbox-footer">
                 <button class="wa-send-btn" id="waSendBtn">
                     <i class="fab fa-whatsapp"></i>
@@ -526,8 +502,4 @@
             </div>
         </div>
     </div>
-
-    <script src="./script.js"></script>
-</body>
-
-</html>
+</Layout>
