@@ -1,5 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import siteData from '../data/site-data.json';
+
+const { hero, cita, stats, servicios, pilares, about, ctaBanner, contacto, footer, whatsappWidget } = siteData;
+const waLink = `https://wa.me/${contacto.whatsapp.numero}?text=${contacto.whatsapp.mensaje}`;
 ---
 
 <Layout
@@ -32,17 +36,17 @@ import Layout from '../layouts/Layout.astro';
 
     <!-- ========== HERO FULLSCREEN ========== -->
     <section class="hero hero-fullscreen" id="hero">
-        <div class="hero-bg-image" style="background-image: url('/assets/img/bypa_foto_hero2.svg');"></div>
+        <div class="hero-bg-image" style={`background-image: url('${hero.heroImage}');`}></div>
         <div class="hero-overlay"></div>
         <div class="hero-container hero-container-fullscreen">
             <div class="hero-content hero-content-centered" data-animate="fade-up">
                 <h1 class="hero-title">
-                    <span class="hero-name-line">Byron</span>
-                    <span class="hero-name-line accent">Altamirano</span>
+                    <span class="hero-name-line">{hero.nombre}</span>
+                    <span class="hero-name-line accent">{hero.apellido}</span>
                 </h1>
                 <p class="hero-tagline">
-                    <span class="hero-tagline-top">Psicólogo Clínico</span>
-                    <span class="hero-tagline-bottom">Mentor de Marca y Mentalidad</span>
+                    <span class="hero-tagline-top">{hero.taglineTop}</span>
+                    <span class="hero-tagline-bottom">{hero.taglineBottom}</span>
                 </p>
             </div>
         </div>
@@ -53,15 +57,14 @@ import Layout from '../layouts/Layout.astro';
         </div>
     </section>
 
-    <!-- ========== CITAS / QUOTES (Peterson-style) ========== -->
+    <!-- ========== CITAS / QUOTES ========== -->
     <section class="citas" id="citas">
         <div class="container">
             <div class="citas-content" data-animate="fade-up">
-                <p class="cita-quote">"Tu conocimiento es el alivio que alguien busca en silencio; garantizamos que tu
-                    voz sea el encuentro que cambie una vida hoy mismo."</p>
+                <p class="cita-quote">"{cita.texto}"</p>
                 <div class="cita-divider"></div>
-                <p class="cita-author">Byron Altamirano</p>
-                <p class="cita-role">Psicólogo Clínico & Estratega Digital</p>
+                <p class="cita-author">{cita.autor}</p>
+                <p class="cita-role">{cita.rol}</p>
             </div>
         </div>
     </section>
@@ -70,47 +73,19 @@ import Layout from '../layouts/Layout.astro';
     <section class="stats" id="stats">
         <div class="container">
             <div class="section-header" data-animate="fade-up">
-                <span class="section-tag">Impacto Real</span>
-                <h2 class="section-title light">Mi método: Datos Reales</h2>
-                <p class="section-desc light">Resultados 100% orgánicos, sin inversión en publicidad</p>
+                <span class="section-tag">{stats.sectionTag}</span>
+                <h2 class="section-title light">{stats.sectionTitle}</h2>
+                <p class="section-desc light">{stats.sectionDesc}</p>
             </div>
             <div class="stats-grid">
-                <div class="stat-card" data-animate="fade-up" data-delay="100">
-                    <div class="stat-icon"><i class="fas fa-play-circle"></i></div>
-                    <div class="stat-number" data-count="19">0</div>
-                    <div class="stat-unit">Millones</div>
-                    <p class="stat-label">Reproducciones de video en los últimos 3 meses</p>
-                </div>
-                <div class="stat-card" data-animate="fade-up" data-delay="200">
-                    <div class="stat-icon"><i class="fas fa-eye"></i></div>
-                    <div class="stat-number" data-count="25">0</div>
-                    <div class="stat-unit">Millones</div>
-                    <p class="stat-label">Visualizaciones en los últimos 90 días</p>
-                </div>
-                <div class="stat-card" data-animate="fade-up" data-delay="300">
-                    <div class="stat-icon"><i class="fas fa-users"></i></div>
-                    <div class="stat-number" data-count="11">0</div>
-                    <div class="stat-unit">Millones</div>
-                    <p class="stat-label">Cuentas únicas alcanzadas con crecimiento orgánico</p>
-                </div>
-                <div class="stat-card" data-animate="fade-up" data-delay="400">
-                    <div class="stat-icon"><i class="fas fa-heart"></i></div>
-                    <div class="stat-number" data-count="4">0</div>
-                    <div class="stat-unit">Millones</div>
-                    <p class="stat-label">Total de "Me gusta" — 1.5M solo en los últimos 3 meses</p>
-                </div>
-                <div class="stat-card" data-animate="fade-up" data-delay="500">
-                    <div class="stat-icon"><i class="fas fa-share-alt"></i></div>
-                    <div class="stat-number" data-count="184">0</div>
-                    <div class="stat-unit">Mil</div>
-                    <p class="stat-label">Personas compartieron mi contenido con su círculo</p>
-                </div>
-                <div class="stat-card" data-animate="fade-up" data-delay="600">
-                    <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
-                    <div class="stat-number" data-count="92">0</div>
-                    <div class="stat-unit">%</div>
-                    <p class="stat-label">De mi alcance llega a nuevas audiencias constantemente</p>
-                </div>
+                {stats.items.map((stat, i) => (
+                    <div class="stat-card" data-animate="fade-up" data-delay={(i + 1) * 100}>
+                        <div class="stat-icon"><i class={stat.icon}></i></div>
+                        <div class="stat-number" data-count={stat.count}>0</div>
+                        <div class="stat-unit">{stat.unit}</div>
+                        <p class="stat-label">{stat.label}</p>
+                    </div>
+                ))}
             </div>
         </div>
     </section>
@@ -119,127 +94,60 @@ import Layout from '../layouts/Layout.astro';
     <section class="servicios" id="servicios">
         <div class="container">
             <div class="section-header" data-animate="fade-up">
-                <span class="section-tag dark">Lo que ofrezco</span>
-                <h2 class="section-title">Servicios <span class="word-highlight">Disponibles</span></h2>
+                <span class="section-tag dark">{servicios.sectionTag}</span>
+                <h2 class="section-title">{servicios.sectionTitle} <span class="word-highlight">{servicios.sectionTitleHighlight}</span></h2>
             </div>
             <div class="servicios-grid">
-                <!-- SERVICIO 1 -->
-                <div class="servicio-card" data-animate="fade-up" data-delay="100">
-                    <div class="servicio-header">
-                        <div class="servicio-icon">
-                            <i class="fas fa-bullhorn"></i>
+                {servicios.items.map((servicio, i) => (
+                    <div class="servicio-card" data-animate="fade-up" data-delay={(i + 1) * 100}>
+                        <div class="servicio-header">
+                            <div class="servicio-icon">
+                                <i class={servicio.icon}></i>
+                            </div>
+                            <h3 class="servicio-name">{servicio.nombre}</h3>
                         </div>
-                        <h3 class="servicio-name">Mentoría de Marca y Comunidad Digital</h3>
-                    </div>
-                    <div class="servicio-body">
-                        <ul class="servicio-features">
-                            <li>
-                                <i class="fas fa-check-circle"></i>
-                                <span><strong>Perfil de Élite:</strong> Diseñado para estudiantes y profesionales de la
-                                    psicología que buscan transformar su conocimiento clínico en una comunidad digital
-                                    de alto impacto.</span>
-                            </li>
-                            <li>
-                                <i class="fas fa-check-circle"></i>
-                                <span><strong>Metodología Orgánica:</strong> Implementa el sistema con el que escalé de
-                                    0
-                                    a 100k seguidores sin inversión publicitaria ni equipos externos, bajo un marco
-                                    profesional y ético.</span>
-                            </li>
-                            <li>
-                                <i class="fas fa-check-circle"></i>
-                                <span><strong>Expansión de Alcance:</strong> Capitaliza tu conocimiento, expandiendo tu
-                                    alcance no solo a la consulta individual, sino también a diferentes productos
-                                    digitales de autoridad.</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <a href="https://wa.me/593963528767?text=Hola%20Byron%20mi%20nombre%20es%20.......%20he%20decidido%20dar%20el%20primer%20paso%20%F0%9F%9A%80%20y%20me%20interesa%20coordinar%20una%20reuni%C3%B3n%20para%20hablar%20sobre%20tu%20mentor%C3%ADa%20de%20Marca%20Personal%20%F0%9F%A4%9D."
-                        target="_blank" rel="noopener" class="btn btn-service">
-                        <i class="fab fa-whatsapp"></i>
-                        <span>Quiero esta mentoría</span>
-                    </a>
-                </div>
-                <!-- SERVICIO 2 -->
-                <div class="servicio-card" data-animate="fade-up" data-delay="200">
-                    <div class="servicio-header">
-                        <div class="servicio-icon">
-                            <i class="fas fa-dumbbell"></i>
+                        <div class="servicio-body">
+                            <ul class="servicio-features">
+                                {servicio.features.map((feature) => (
+                                    <li>
+                                        <i class="fas fa-check-circle"></i>
+                                        <span><strong>{feature.titulo}:</strong> {feature.texto}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                            {servicio.nota && (
+                                <p class="servicio-note">
+                                    <i class="fas fa-info-circle"></i>
+                                    {servicio.nota}
+                                </p>
+                            )}
                         </div>
-                        <h3 class="servicio-name">Entrenamiento en Asertividad y Mentalidad</h3>
+                        <a href={servicio.ctaLink} target="_blank" rel="noopener" class="btn btn-service">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>{servicio.ctaTexto}</span>
+                        </a>
                     </div>
-                    <div class="servicio-body">
-                        <ul class="servicio-features">
-                            <li>
-                                <i class="fas fa-check-circle"></i>
-                                <span><strong>Control de Vida:</strong> Diseñada para quienes desean tener el control
-                                    total
-                                    de su vida, su comunicación y su toma de decisiones para vivir mejor (todo
-                                    público).</span>
-                            </li>
-                            <li>
-                                <i class="fas fa-check-circle"></i>
-                                <span><strong>Disciplina Real:</strong> Desarrolla disciplina estratégica basada en
-                                    neurociencia y psicología conductual aplicada; lejos de frases motivacionales y la
-                                    autoayuda superficial.</span>
-                            </li>
-                            <li>
-                                <i class="fas fa-check-circle"></i>
-                                <span><strong>Precisión Técnica:</strong> Domina el arte de decir lo que piensas sin
-                                    miedo
-                                    con la precisión técnica de la psicología.</span>
-                            </li>
-                        </ul>
-                        <p class="servicio-note">
-                            <i class="fas fa-info-circle"></i>
-                            Este proceso es una mentoría de entrenamiento y desarrollo personal; no constituye ni
-                            reemplaza a la psicoterapia clínica.
-                        </p>
-                    </div>
-                    <a href="https://wa.me/593963528767?text=Hola%20Byron%20mi%20nombre%20es%20.......%20he%20decidido%20dar%20el%20primer%20paso%20%F0%9F%9A%80%20y%20me%20interesa%20coordinar%20una%20reuni%C3%B3n%20para%20hablar%20sobre%20el%20Entrenamiento%20Asertivo%20%F0%9F%A4%9D."
-                        target="_blank" rel="noopener" class="btn btn-service">
-                        <i class="fab fa-whatsapp"></i>
-                        <span>Quiero este entrenamiento</span>
-                    </a>
-                </div>
+                ))}
             </div>
         </div>
     </section>
 
-    <!-- ========== PILARES (Robbins-style) ========== -->
+    <!-- ========== PILARES ========== -->
     <section class="pilares" id="pilares">
         <div class="container">
             <div class="section-header" data-animate="fade-up">
-                <span class="section-tag">Áreas de Enfoque</span>
-                <h2 class="section-title light">Pilares de <span class="word-highlight">Transformación</span></h2>
-                <p class="section-desc light">Domina cada dimensión para convertirte en un referente de impacto digital
-                </p>
+                <span class="section-tag">{pilares.sectionTag}</span>
+                <h2 class="section-title light">{pilares.sectionTitle} <span class="word-highlight">{pilares.sectionTitleHighlight}</span></h2>
+                <p class="section-desc light">{pilares.sectionDesc}</p>
             </div>
             <div class="pilares-grid">
-                <div class="pilar-card" data-animate="fade-up" data-delay="100">
-                    <div class="pilar-icon"><i class="fas fa-brain"></i></div>
-                    <h3 class="pilar-title">Psicología Clínica</h3>
-                    <p class="pilar-text">Base científica y rigor profesional. El conocimiento clínico es el motor que
-                        impulsa contenidos con valor real y credibilidad.</p>
-                </div>
-                <div class="pilar-card" data-animate="fade-up" data-delay="200">
-                    <div class="pilar-icon"><i class="fas fa-bullhorn"></i></div>
-                    <h3 class="pilar-title">Marca Personal</h3>
-                    <p class="pilar-text">Estrategia orgánica para construir tu presencia digital, posicionarte como
-                        autoridad y conectar con tu audiencia ideal.</p>
-                </div>
-                <div class="pilar-card" data-animate="fade-up" data-delay="300">
-                    <div class="pilar-icon"><i class="fas fa-dna"></i></div>
-                    <h3 class="pilar-title">Neurociencia</h3>
-                    <p class="pilar-text">Entender cómo funciona el cerebro para crear mensajes que detienen el scroll y
-                        generan conexión emocional genuina.</p>
-                </div>
-                <div class="pilar-card" data-animate="fade-up" data-delay="400">
-                    <div class="pilar-icon"><i class="fas fa-fist-raised"></i></div>
-                    <h3 class="pilar-title">Entrenamiento Asertivo</h3>
-                    <p class="pilar-text">Comunicación, resiliencia y toma de decisiones basadas en evidencia para una
-                        mentalidad de alto rendimiento.</p>
-                </div>
+                {pilares.items.map((pilar, i) => (
+                    <div class="pilar-card" data-animate="fade-up" data-delay={(i + 1) * 100}>
+                        <div class="pilar-icon"><i class={pilar.icon}></i></div>
+                        <h3 class="pilar-title">{pilar.titulo}</h3>
+                        <p class="pilar-text">{pilar.texto}</p>
+                    </div>
+                ))}
             </div>
         </div>
     </section>
@@ -258,48 +166,33 @@ import Layout from '../layouts/Layout.astro';
                 <div class="carousel-viewport">
                     <div class="carousel-track">
                         <div class="carousel-slide">
-                            <video class="carousel-video" src="/assets/video/Bypa1.mp4" playsinline
-                                preload="metadata"></video>
+                            <video class="carousel-video" src="/assets/video/Bypa1.mp4" playsinline preload="metadata"></video>
                             <div class="video-overlay">
-                                <button class="video-play-btn" aria-label="Reproducir video">
-                                    <i class="fas fa-play"></i>
-                                </button>
+                                <button class="video-play-btn" aria-label="Reproducir video"><i class="fas fa-play"></i></button>
                             </div>
                         </div>
                         <div class="carousel-slide">
-                            <video class="carousel-video" src="/assets/video/Bypa2.mp4" playsinline
-                                preload="metadata"></video>
+                            <video class="carousel-video" src="/assets/video/Bypa2.mp4" playsinline preload="metadata"></video>
                             <div class="video-overlay">
-                                <button class="video-play-btn" aria-label="Reproducir video">
-                                    <i class="fas fa-play"></i>
-                                </button>
+                                <button class="video-play-btn" aria-label="Reproducir video"><i class="fas fa-play"></i></button>
                             </div>
                         </div>
                         <div class="carousel-slide">
-                            <video class="carousel-video" src="/assets/video/Bypa3.mp4" playsinline
-                                preload="metadata"></video>
+                            <video class="carousel-video" src="/assets/video/Bypa3.mp4" playsinline preload="metadata"></video>
                             <div class="video-overlay">
-                                <button class="video-play-btn" aria-label="Reproducir video">
-                                    <i class="fas fa-play"></i>
-                                </button>
+                                <button class="video-play-btn" aria-label="Reproducir video"><i class="fas fa-play"></i></button>
                             </div>
                         </div>
                         <div class="carousel-slide">
-                            <video class="carousel-video" src="/assets/video/Bypa4.mp4" playsinline
-                                preload="metadata"></video>
+                            <video class="carousel-video" src="/assets/video/Bypa4.mp4" playsinline preload="metadata"></video>
                             <div class="video-overlay">
-                                <button class="video-play-btn" aria-label="Reproducir video">
-                                    <i class="fas fa-play"></i>
-                                </button>
+                                <button class="video-play-btn" aria-label="Reproducir video"><i class="fas fa-play"></i></button>
                             </div>
                         </div>
                         <div class="carousel-slide">
-                            <video class="carousel-video" src="/assets/video/Bypa5.mp4" playsinline
-                                preload="metadata"></video>
+                            <video class="carousel-video" src="/assets/video/Bypa5.mp4" playsinline preload="metadata"></video>
                             <div class="video-overlay">
-                                <button class="video-play-btn" aria-label="Reproducir video">
-                                    <i class="fas fa-play"></i>
-                                </button>
+                                <button class="video-play-btn" aria-label="Reproducir video"><i class="fas fa-play"></i></button>
                             </div>
                         </div>
                     </div>
@@ -318,26 +211,18 @@ import Layout from '../layouts/Layout.astro';
             <div class="about-grid">
                 <div class="about-image" data-animate="fade-right">
                     <div class="about-img-wrapper">
-                        <img src="/assets/img/bypa_foto_sobremi.png" alt="Byron Altamirano - Sobre Mí" loading="lazy">
+                        <img src={about.aboutImage} alt="Byron Altamirano - Sobre Mí" loading="lazy">
                     </div>
                     <div class="about-img-decoration"></div>
                 </div>
                 <div class="about-content" data-animate="fade-left">
-                    <span class="section-tag">Conóceme</span>
-                    <h2 class="section-title light">SOBRE MÍ</h2>
-                    <p class="about-text">
-                        Soy <strong>Byron Altamirano</strong>, ecuatoriano y psicólogo clínico en proceso de titulación
-                        por la <strong>UPS</strong>. Desde que era niño supe que mi misión era ayudar a los demás, y hoy
-                        esa pasión se ha convertido en una comunidad digital de más de <strong>100.000 personas</strong>
-                        con las que comparto lo mejor de la salud mental y la neurociencia.
-                    </p>
-                    <p class="about-text">
-                        Pero mi propósito no termina ahí: también impulso a otros psicólogos a construir su propia
-                        comunidad digital, porque estoy convencido de que hoy es vital que los profesionales de la salud
-                        conectemos de verdad con el mundo digital.
-                    </p>
+                    <span class="section-tag">{about.sectionTag}</span>
+                    <h2 class="section-title light">{about.sectionTitle}</h2>
+                    {about.parrafos.map((parrafo) => (
+                        <p class="about-text" set:html={parrafo} />
+                    ))}
                     <p class="about-text highlight">
-                        <em>¡Es momento de que tu mensaje llegue a todo el mundo y a quienes más lo necesitan!</em>
+                        <em>{about.destacado}</em>
                     </p>
                 </div>
             </div>
@@ -348,9 +233,8 @@ import Layout from '../layouts/Layout.astro';
     <section class="cta-banner">
         <div class="container">
             <div class="cta-banner-content" data-animate="fade-up">
-                <h2 class="cta-banner-title">¿Listo para transformar tu mensaje y convertirte en referente?</h2>
-                <p class="cta-banner-text">Más de 100.000 personas ya confían en mi método. El próximo paso lo das tú.
-                </p>
+                <h2 class="cta-banner-title">{ctaBanner.titulo}</h2>
+                <p class="cta-banner-text">{ctaBanner.texto}</p>
                 <a href="#contacto" class="btn-white">
                     <i class="fas fa-rocket"></i>
                     <span>Empieza Ahora</span>
@@ -367,12 +251,11 @@ import Layout from '../layouts/Layout.astro';
         </div>
         <div class="container">
             <div class="contacto-content" data-animate="fade-up">
-                <span class="section-tag">Hablemos</span>
-                <h2 class="cta-title">Conectemos</h2>
+                <span class="section-tag">{contacto.sectionTag}</span>
+                <h2 class="cta-title">{contacto.sectionTitle}</h2>
 
                 <div class="contacto-actions">
-                    <a href="https://wa.me/593963528767?text=Hola%20Byron%20mi%20nombre%20es%20.......%20he%20decidido%20dar%20el%20primer%20paso%20%F0%9F%9A%80%20y%20me%20interesa%20coordinar%20una%20reuni%C3%B3n%20para%20hablar%20sobre%20tus%20mentor%C3%ADas%20y/o%20el%20entrenamiento%20asertivo%20%F0%9F%A4%9D."
-                        target="_blank" rel="noopener" class="contact-card whatsapp">
+                    <a href={waLink} target="_blank" rel="noopener" class="contact-card whatsapp">
                         <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
                         <div class="contact-info">
                             <span class="contact-label">WhatsApp</span>
@@ -380,26 +263,24 @@ import Layout from '../layouts/Layout.astro';
                         </div>
                         <i class="fas fa-arrow-right"></i>
                     </a>
-                    <a href="mailto:contacto@byronaltamirano.me" class="contact-card email">
+                    <a href={`mailto:${contacto.email}`} class="contact-card email">
                         <div class="contact-icon"><i class="fas fa-envelope"></i></div>
                         <div class="contact-info">
                             <span class="contact-label">Email</span>
-                            <span class="contact-value">contacto@byronaltamirano.me</span>
+                            <span class="contact-value">{contacto.email}</span>
                         </div>
                         <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
 
                 <div class="contacto-social">
-                    <a href="https://www.instagram.com/altamirano.psic_clinica" target="_blank" rel="noopener"
-                        class="social-link">
+                    <a href={contacto.instagram} target="_blank" rel="noopener" class="social-link">
                         <i class="fab fa-instagram"></i>
-                        <span>@altamirano.psic_clinica</span>
+                        <span>{contacto.instagramUser}</span>
                     </a>
-                    <a href="https://www.tiktok.com/@altamirano.psic_clinica" target="_blank" rel="noopener"
-                        class="social-link">
+                    <a href={contacto.tiktok} target="_blank" rel="noopener" class="social-link">
                         <i class="fab fa-tiktok"></i>
-                        <span>@altamirano.psic_clinica</span>
+                        <span>{contacto.tiktokUser}</span>
                     </a>
                 </div>
             </div>
@@ -412,11 +293,9 @@ import Layout from '../layouts/Layout.astro';
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="#hero" class="nav-logo">
-                        <img src="/assets/img/logo.svg" alt="Byron Altamirano Logo" class="logo-img"
-                            style="height:60px;">
+                        <img src="/assets/img/logo.svg" alt="Byron Altamirano Logo" class="logo-img" style="height:60px;">
                     </a>
-                    <p>Transformo el conocimiento clínico en comunidades digitales de alto impacto. +100K de comunidad
-                        digital.</p>
+                    <p>{footer.brandText}</p>
                 </div>
                 <div class="footer-col">
                     <h4>Links Rápidos</h4>
@@ -431,19 +310,15 @@ import Layout from '../layouts/Layout.astro';
                 <div class="footer-col">
                     <h4>Redes Sociales</h4>
                     <ul>
-                        <li><a href="https://www.instagram.com/altamirano.psic_clinica" target="_blank"
-                                rel="noopener"><i class="fab fa-instagram"></i> Instagram</a></li>
-                        <li><a href="https://www.tiktok.com/@altamirano.psic_clinica" target="_blank" rel="noopener"><i
-                                    class="fab fa-tiktok"></i> TikTok</a></li>
-                        <li><a href="https://wa.me/593963528767" target="_blank" rel="noopener"><i
-                                    class="fab fa-whatsapp"></i> WhatsApp</a></li>
-                        <li><a href="mailto:contacto@byronaltamirano.me"><i class="fas fa-envelope"></i> Email</a></li>
+                        <li><a href={contacto.instagram} target="_blank" rel="noopener"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href={contacto.tiktok} target="_blank" rel="noopener"><i class="fab fa-tiktok"></i> TikTok</a></li>
+                        <li><a href={`https://wa.me/${contacto.whatsapp.numero}`} target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                        <li><a href={`mailto:${contacto.email}`}><i class="fas fa-envelope"></i> Email</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p class="footer-bottom-text">© 2026 Byron Altamirano — Todos los derechos reservados | Desarrollado por
-                    Sebastián Loján</p>
+                <p class="footer-bottom-text">{footer.copyright}</p>
             </div>
         </div>
     </footer>
@@ -461,8 +336,8 @@ import Layout from '../layouts/Layout.astro';
                     <i class="fas fa-headset"></i>
                 </div>
                 <div class="wa-chatbox-info">
-                    <span class="wa-chatbox-name">Byron</span>
-                    <span class="wa-chatbox-role">Psicólogo Clínico</span>
+                    <span class="wa-chatbox-name">{whatsappWidget.nombre}</span>
+                    <span class="wa-chatbox-role">{whatsappWidget.rol}</span>
                 </div>
                 <button class="wa-chatbox-close" id="waChatboxClose" aria-label="Cerrar chat">
                     <i class="fas fa-times"></i>
@@ -471,21 +346,17 @@ import Layout from '../layouts/Layout.astro';
 
             <div class="wa-chatbox-body">
                 <div class="wa-msg-bubble">
-                    <p>¡Hola! 👋 Soy <strong>Byron</strong>. ¿En qué te puedo ayudar?</p>
+                    <p set:html={whatsappWidget.mensajeBienvenida} />
                     <span class="wa-msg-time">Justo ahora</span>
                 </div>
 
                 <div class="wa-quick-options">
                     <p class="wa-quick-label">Elige una opción:</p>
-                    <button class="wa-quick-btn" data-msg="Marketing para psicólogos">
-                        <i class="fas fa-bullhorn"></i> Marketing para psicólogos
-                    </button>
-                    <button class="wa-quick-btn" data-msg="Entrenamiento asertivo">
-                        <i class="fas fa-dumbbell"></i> Entrenamiento asertivo
-                    </button>
-                    <button class="wa-quick-btn" data-msg="Colaboraciones">
-                        <i class="fas fa-handshake"></i> Colaboraciones
-                    </button>
+                    {whatsappWidget.opciones.map((opcion) => (
+                        <button class="wa-quick-btn" data-msg={opcion.msg}>
+                            <i class={opcion.icon}></i> {opcion.texto}
+                        </button>
+                    ))}
                 </div>
 
                 <div class="wa-custom-msg">

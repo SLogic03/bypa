@@ -1,0 +1,187 @@
+{
+    "hero": {
+        "nombre": "Byron",
+        "apellido": "Altamirano",
+        "taglineTop": "Psicólogo Clínico",
+        "taglineBottom": "Mentor de Marca y Mentalidad",
+        "heroImage": "/assets/img/bypa_foto_hero2.svg"
+    },
+    "cita": {
+        "texto": "Tu conocimiento es el alivio que alguien busca en silencio; garantizamos que tu voz sea el encuentro que cambie una vida hoy mismo.",
+        "autor": "Byron Altamirano",
+        "rol": "Psicólogo Clínico & Estratega Digital"
+    },
+    "stats": {
+        "sectionTag": "Impacto Real",
+        "sectionTitle": "Mi método: Datos Reales",
+        "sectionDesc": "Resultados 100% orgánicos, sin inversión en publicidad",
+        "items": [
+            {
+                "icon": "fas fa-play-circle",
+                "count": 19,
+                "unit": "Millones",
+                "label": "Reproducciones de video en los últimos 3 meses"
+            },
+            {
+                "icon": "fas fa-eye",
+                "count": 25,
+                "unit": "Millones",
+                "label": "Visualizaciones en los últimos 90 días"
+            },
+            {
+                "icon": "fas fa-users",
+                "count": 11,
+                "unit": "Millones",
+                "label": "Cuentas únicas alcanzadas con crecimiento orgánico"
+            },
+            {
+                "icon": "fas fa-heart",
+                "count": 4,
+                "unit": "Millones",
+                "label": "Total de \"Me gusta\" — 1.5M solo en los últimos 3 meses"
+            },
+            {
+                "icon": "fas fa-share-alt",
+                "count": 184,
+                "unit": "Mil",
+                "label": "Personas compartieron mi contenido con su círculo"
+            },
+            {
+                "icon": "fas fa-chart-line",
+                "count": 92,
+                "unit": "%",
+                "label": "De mi alcance llega a nuevas audiencias constantemente"
+            }
+        ]
+    },
+    "servicios": {
+        "sectionTag": "Lo que ofrezco",
+        "sectionTitle": "Servicios",
+        "sectionTitleHighlight": "Disponibles",
+        "items": [
+            {
+                "icon": "fas fa-bullhorn",
+                "nombre": "Mentoría de Marca y Comunidad Digital",
+                "features": [
+                    {
+                        "titulo": "Perfil de Élite",
+                        "texto": "Diseñado para estudiantes y profesionales de la psicología que buscan transformar su conocimiento clínico en una comunidad digital de alto impacto."
+                    },
+                    {
+                        "titulo": "Metodología Orgánica",
+                        "texto": "Implementa el sistema con el que escalé de 0 a 100k seguidores sin inversión publicitaria ni equipos externos, bajo un marco profesional y ético."
+                    },
+                    {
+                        "titulo": "Expansión de Alcance",
+                        "texto": "Capitaliza tu conocimiento, expandiendo tu alcance no solo a la consulta individual, sino también a diferentes productos digitales de autoridad."
+                    }
+                ],
+                "nota": "",
+                "ctaTexto": "Quiero esta mentoría",
+                "ctaLink": "https://wa.me/593963528767?text=Hola%20Byron%20mi%20nombre%20es%20.......%20he%20decidido%20dar%20el%20primer%20paso%20%F0%9F%9A%80%20y%20me%20interesa%20coordinar%20una%20reuni%C3%B3n%20para%20hablar%20sobre%20tu%20mentor%C3%ADa%20de%20Marca%20Personal%20%F0%9F%A4%9D."
+            },
+            {
+                "icon": "fas fa-dumbbell",
+                "nombre": "Entrenamiento en Asertividad y Mentalidad",
+                "features": [
+                    {
+                        "titulo": "Control de Vida",
+                        "texto": "Diseñada para quienes desean tener el control total de su vida, su comunicación y su toma de decisiones para vivir mejor (todo público)."
+                    },
+                    {
+                        "titulo": "Disciplina Real",
+                        "texto": "Desarrolla disciplina estratégica basada en neurociencia y psicología conductual aplicada; lejos de frases motivacionales y la autoayuda superficial."
+                    },
+                    {
+                        "titulo": "Precisión Técnica",
+                        "texto": "Domina el arte de decir lo que piensas sin miedo con la precisión técnica de la psicología."
+                    }
+                ],
+                "nota": "Este proceso es una mentoría de entrenamiento y desarrollo personal; no constituye ni reemplaza a la psicoterapia clínica.",
+                "ctaTexto": "Quiero este entrenamiento",
+                "ctaLink": "https://wa.me/593963528767?text=Hola%20Byron%20mi%20nombre%20es%20.......%20he%20decidido%20dar%20el%20primer%20paso%20%F0%9F%9A%80%20y%20me%20interesa%20coordinar%20una%20reuni%C3%B3n%20para%20hablar%20sobre%20el%20Entrenamiento%20Asertivo%20%F0%9F%A4%9D."
+            }
+        ]
+    },
+    "pilares": {
+        "sectionTag": "Áreas de Enfoque",
+        "sectionTitle": "Pilares de",
+        "sectionTitleHighlight": "Transformación",
+        "sectionDesc": "Domina cada dimensión para convertirte en un referente de impacto digital",
+        "items": [
+            {
+                "icon": "fas fa-brain",
+                "titulo": "Psicología Clínica",
+                "texto": "Base científica y rigor profesional. El conocimiento clínico es el motor que impulsa contenidos con valor real y credibilidad."
+            },
+            {
+                "icon": "fas fa-bullhorn",
+                "titulo": "Marca Personal",
+                "texto": "Estrategia orgánica para construir tu presencia digital, posicionarte como autoridad y conectar con tu audiencia ideal."
+            },
+            {
+                "icon": "fas fa-dna",
+                "titulo": "Neurociencia",
+                "texto": "Entender cómo funciona el cerebro para crear mensajes que detienen el scroll y generan conexión emocional genuina."
+            },
+            {
+                "icon": "fas fa-fist-raised",
+                "titulo": "Entrenamiento Asertivo",
+                "texto": "Comunicación, resiliencia y toma de decisiones basadas en evidencia para una mentalidad de alto rendimiento."
+            }
+        ]
+    },
+    "about": {
+        "sectionTag": "Conóceme",
+        "sectionTitle": "SOBRE MÍ",
+        "aboutImage": "/assets/img/bypa_foto_sobremi.png",
+        "parrafos": [
+            "Soy <strong>Byron Altamirano</strong>, ecuatoriano y psicólogo clínico en proceso de titulación por la <strong>UPS</strong>. Desde que era niño supe que mi misión era ayudar a los demás, y hoy esa pasión se ha convertido en una comunidad digital de más de <strong>100.000 personas</strong> con las que comparto lo mejor de la salud mental y la neurociencia.",
+            "Pero mi propósito no termina ahí: también impulso a otros psicólogos a construir su propia comunidad digital, porque estoy convencido de que hoy es vital que los profesionales de la salud conectemos de verdad con el mundo digital."
+        ],
+        "destacado": "¡Es momento de que tu mensaje llegue a todo el mundo y a quienes más lo necesitan!"
+    },
+    "ctaBanner": {
+        "titulo": "¿Listo para transformar tu mensaje y convertirte en referente?",
+        "texto": "Más de 100.000 personas ya confían en mi método. El próximo paso lo das tú."
+    },
+    "contacto": {
+        "sectionTag": "Hablemos",
+        "sectionTitle": "Conectemos",
+        "whatsapp": {
+            "numero": "593963528767",
+            "mensaje": "Hola%20Byron%20mi%20nombre%20es%20.......%20he%20decidido%20dar%20el%20primer%20paso%20%F0%9F%9A%80%20y%20me%20interesa%20coordinar%20una%20reuni%C3%B3n%20para%20hablar%20sobre%20tus%20mentor%C3%ADas%20y/o%20el%20entrenamiento%20asertivo%20%F0%9F%A4%9D."
+        },
+        "email": "contacto@byronaltamirano.me",
+        "instagram": "https://www.instagram.com/altamirano.psic_clinica",
+        "instagramUser": "@altamirano.psic_clinica",
+        "tiktok": "https://www.tiktok.com/@altamirano.psic_clinica",
+        "tiktokUser": "@altamirano.psic_clinica"
+    },
+    "footer": {
+        "brandText": "Transformo el conocimiento clínico en comunidades digitales de alto impacto. +100K de comunidad digital.",
+        "copyright": "© 2026 Byron Altamirano — Todos los derechos reservados | Desarrollado por Sebastián Loján"
+    },
+    "whatsappWidget": {
+        "nombre": "Byron",
+        "rol": "Psicólogo Clínico",
+        "mensajeBienvenida": "¡Hola! 👋 Soy <strong>Byron</strong>. ¿En qué te puedo ayudar?",
+        "opciones": [
+            {
+                "icon": "fas fa-bullhorn",
+                "texto": "Marketing para psicólogos",
+                "msg": "Marketing para psicólogos"
+            },
+            {
+                "icon": "fas fa-dumbbell",
+                "texto": "Entrenamiento asertivo",
+                "msg": "Entrenamiento asertivo"
+            },
+            {
+                "icon": "fas fa-handshake",
+                "texto": "Colaboraciones",
+                "msg": "Colaboraciones"
+            }
+        ]
+    }
+}
