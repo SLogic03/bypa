@@ -238,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const fullMsg = waSelectedQuickOption
                 ? `Hola, me interesa: ${userMsg}`
                 : userMsg;
-            const url = `https://wa.me/593963528767?text=${encodeURIComponent(fullMsg)}`;
+            const url = `https://wa.me/593968661263?text=${encodeURIComponent(fullMsg)}`;
             window.open(url, '_blank');
         });
     }
