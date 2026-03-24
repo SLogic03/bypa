@@ -15,16 +15,28 @@ export default async function handler(req, res) {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
+                action: 'sendMessage',
                 sessionId: sessionId || 'default',
                 chatInput: chatInput,
             }),
         });
 
-        const data = await n8nResponse.json();
+        // Escudo: si n8n responde con error (flujo apagado, etc.)
+        if (!n8nResponse.ok) {
+            console.error('n8n respondió con error. Código:', n8nResponse.status);
+            return res.status(200).json({
+                output: 'El asistente se encuentra en mantenimiento en este momento. Por favor, intenta de nuevo más tarde.',
+            });
+        }
 
+        const data = await n8nResponse.json();
         return res.status(200).json(data);
+
     } catch (error) {
+        // Si n8n se cae por completo y ni siquiera responde
         console.error('Error contactando a n8n:', error);
-        return res.status(500).json({ error: 'Error interno del servidor' });
+        return res.status(200).json({
+            output: 'El asistente se encuentra en mantenimiento en este momento. Por favor, intenta de nuevo más tarde.',
+        });
     }
 }
