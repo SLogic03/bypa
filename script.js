@@ -334,34 +334,35 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typing) typing.remove();
     }
 
-    // Send message to bot (n8n integration ready)
+    // Generate or retrieve a unique session ID for chat memory
+    function getChatSessionId() {
+        let sid = sessionStorage.getItem('chatbot_session_id');
+        if (!sid) {
+            sid = 'session_' + Date.now() + '_' + Math.random().toString(36).substring(2, 9);
+            sessionStorage.setItem('chatbot_session_id', sid);
+        }
+        return sid;
+    }
+
+    // Send message to bot via Vercel proxy → n8n Chat Trigger
     async function sendToBot(userMessage) {
         showTyping();
 
         try {
-            // ===== CONEXIÓN A N8N — Descomentar cuando esté listo =====
-            // const response = await fetch('/api/chat', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify({ mensaje: userMessage })
-            // });
-            // const data = await response.json();
-            // removeTyping();
-            // addChatMessage(data.reply || data.output || 'Gracias por tu mensaje.', 'bot');
-            // return;
-            // ===========================================================
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    sessionId: getChatSessionId(),
+                    chatInput: userMessage,
+                }),
+            });
 
-            // Placeholder: respuesta local temporal
-            await new Promise(resolve => setTimeout(resolve, 1200));
+            const data = await response.json();
             removeTyping();
 
-            const respuestas = [
-                '¡Excelente pregunta! Te recomiendo agendar una consulta directa con Byron a través del botón de WhatsApp para obtener información personalizada.',
-                'Gracias por tu interés. Nuestras mentorías están diseñadas para profesionales que buscan escalar su marca personal. ¿Te gustaría saber más sobre algún servicio en particular?',
-                'Byron ofrece dos servicios principales: Mentoría de Marca y Comunidad Digital, y Entrenamiento en Asertividad y Mentalidad. ¿Cuál te interesa más?',
-                'Para información detallada sobre precios y disponibilidad, te invito a contactarnos por WhatsApp. ¡Estaremos encantados de ayudarte!',
-            ];
-            const reply = respuestas[Math.floor(Math.random() * respuestas.length)];
+            // n8n Chat Trigger suele devolver "output" o "text"
+            const reply = data.output || data.text || data.reply || data.message || 'Gracias por tu mensaje. ¿Hay algo más en lo que pueda ayudarte?';
             addChatMessage(reply, 'bot');
 
         } catch (error) {
