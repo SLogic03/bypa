@@ -493,6 +493,60 @@
         </div>
     </footer>
 
+    <!-- ========== CHATBOT AI WIDGET ========== -->
+    <div class="chatbot-widget" id="chatbotWidget">
+        <!-- Floating Action Button -->
+        <button class="chatbot-fab" id="chatbotFab" aria-label="Abrir asistente virtual">
+            <i class="fas fa-robot chatbot-fab-icon-open"></i>
+            <i class="fas fa-times chatbot-fab-icon-close"></i>
+            <span class="chatbot-fab-pulse"></span>
+        </button>
+
+        <!-- Chat Window -->
+        <div class="chatbot-window" id="chatbotWindow">
+            <!-- Header -->
+            <div class="chatbot-header">
+                <div class="chatbot-header-avatar">
+                    <i class="fas fa-brain"></i>
+                    <span class="chatbot-status-dot"></span>
+                </div>
+                <div class="chatbot-header-info">
+                    <span class="chatbot-header-name">Asistente Byron</span>
+                    <span class="chatbot-header-status">En línea</span>
+                </div>
+                <button class="chatbot-header-close" id="chatbotClose" aria-label="Cerrar chat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Messages Area -->
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="chatbot-msg bot">
+                    <div class="chatbot-msg-avatar"><i class="fas fa-brain"></i></div>
+                    <div class="chatbot-msg-bubble">
+                        <p>¡Hola! 👋 Soy el asistente virtual de Byron Altamirano. Puedo ayudarte con información sobre nuestros servicios, mentorías y entrenamientos.</p>
+                        <span class="chatbot-msg-time">Justo ahora</span>
+                    </div>
+                </div>
+                <div class="chatbot-msg bot">
+                    <div class="chatbot-msg-avatar"><i class="fas fa-brain"></i></div>
+                    <div class="chatbot-msg-bubble">
+                        <p>¿En qué puedo ayudarte hoy?</p>
+                        <span class="chatbot-msg-time">Justo ahora</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="chatbot-input-area">
+                <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Escribe tu pregunta..." autocomplete="off">
+                <button class="chatbot-send-btn" id="chatbotSendBtn" aria-label="Enviar mensaje">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- ========== WHATSAPP CHATBOX WIDGET ========== -->
     <div class="wa-widget" id="waWidget">
         <!-- Floating Action Button -->

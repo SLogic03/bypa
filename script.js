@@ -260,6 +260,157 @@ document.addEventListener('DOMContentLoaded', () => {
         waFab.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
     }
 
+    // ========================= CHATBOT AI WIDGET =========================
+    const chatbotFab = document.getElementById('chatbotFab');
+    const chatbotWindow = document.getElementById('chatbotWindow');
+    const chatbotClose = document.getElementById('chatbotClose');
+    const chatbotInput = document.getElementById('chatbotInput');
+    const chatbotSendBtn = document.getElementById('chatbotSendBtn');
+    const chatbotMessages = document.getElementById('chatbotMessages');
+    const chatbotWidget = document.getElementById('chatbotWidget');
+    let chatbotOpen = false;
+
+    function toggleChatbot() {
+        chatbotOpen = !chatbotOpen;
+        chatbotWindow.classList.toggle('open', chatbotOpen);
+        chatbotFab.classList.toggle('active', chatbotOpen);
+        if (chatbotOpen && chatbotInput) {
+            setTimeout(() => chatbotInput.focus(), 350);
+        }
+    }
+
+    if (chatbotFab) chatbotFab.addEventListener('click', toggleChatbot);
+    if (chatbotClose) chatbotClose.addEventListener('click', toggleChatbot);
+
+    // Close on click outside
+    document.addEventListener('click', (e) => {
+        if (chatbotOpen && chatbotWidget && !chatbotWidget.contains(e.target)) {
+            toggleChatbot();
+        }
+    });
+
+    // Get current time string
+    function getChatTime() {
+        const now = new Date();
+        return now.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+    }
+
+    // Add a message to the chat
+    function addChatMessage(text, sender) {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `chatbot-msg ${sender}`;
+
+        const avatarIcon = sender === 'bot' ? 'fa-brain' : 'fa-user';
+        msgDiv.innerHTML = `
+            <div class="chatbot-msg-avatar"><i class="fas ${avatarIcon}"></i></div>
+            <div class="chatbot-msg-bubble">
+                <p>${text}</p>
+                <span class="chatbot-msg-time">${getChatTime()}</span>
+            </div>
+        `;
+
+        chatbotMessages.appendChild(msgDiv);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    // Show typing indicator
+    function showTyping() {
+        const typingDiv = document.createElement('div');
+        typingDiv.className = 'chatbot-typing';
+        typingDiv.id = 'chatbotTyping';
+        typingDiv.innerHTML = `
+            <div class="chatbot-msg-avatar"><i class="fas fa-brain"></i></div>
+            <div class="chatbot-typing-dots">
+                <span></span><span></span><span></span>
+            </div>
+        `;
+        chatbotMessages.appendChild(typingDiv);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    // Remove typing indicator
+    function removeTyping() {
+        const typing = document.getElementById('chatbotTyping');
+        if (typing) typing.remove();
+    }
+
+    // Send message to bot (n8n integration ready)
+    async function sendToBot(userMessage) {
+        showTyping();
+
+        try {
+            // ===== CONEXIÓN A N8N — Descomentar cuando esté listo =====
+            // const response = await fetch('/api/chat', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify({ mensaje: userMessage })
+            // });
+            // const data = await response.json();
+            // removeTyping();
+            // addChatMessage(data.reply || data.output || 'Gracias por tu mensaje.', 'bot');
+            // return;
+            // ===========================================================
+
+            // Placeholder: respuesta local temporal
+            await new Promise(resolve => setTimeout(resolve, 1200));
+            removeTyping();
+
+            const respuestas = [
+                '¡Excelente pregunta! Te recomiendo agendar una consulta directa con Byron a través del botón de WhatsApp para obtener información personalizada.',
+                'Gracias por tu interés. Nuestras mentorías están diseñadas para profesionales que buscan escalar su marca personal. ¿Te gustaría saber más sobre algún servicio en particular?',
+                'Byron ofrece dos servicios principales: Mentoría de Marca y Comunidad Digital, y Entrenamiento en Asertividad y Mentalidad. ¿Cuál te interesa más?',
+                'Para información detallada sobre precios y disponibilidad, te invito a contactarnos por WhatsApp. ¡Estaremos encantados de ayudarte!',
+            ];
+            const reply = respuestas[Math.floor(Math.random() * respuestas.length)];
+            addChatMessage(reply, 'bot');
+
+        } catch (error) {
+            removeTyping();
+            addChatMessage('Lo siento, hubo un error al procesar tu mensaje. Por favor, intenta de nuevo o contáctanos por WhatsApp.', 'bot');
+        }
+    }
+
+    // Handle send
+    function handleChatSend() {
+        if (!chatbotInput) return;
+        const msg = chatbotInput.value.trim();
+        if (!msg) return;
+
+        addChatMessage(msg, 'user');
+        chatbotInput.value = '';
+        sendToBot(msg);
+    }
+
+    if (chatbotSendBtn) chatbotSendBtn.addEventListener('click', handleChatSend);
+    if (chatbotInput) {
+        chatbotInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                handleChatSend();
+            }
+        });
+    }
+
+    // Show chatbot FAB after scroll (same as WhatsApp)
+    const chatbotFabRef = chatbotFab;
+    if (chatbotFabRef) {
+        chatbotFabRef.style.opacity = '0';
+        chatbotFabRef.style.pointerEvents = 'none';
+        chatbotFabRef.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!chatbotFabRef) return;
+        if (window.scrollY > 400) {
+            chatbotFabRef.style.opacity = '1';
+            chatbotFabRef.style.pointerEvents = 'auto';
+        } else {
+            chatbotFabRef.style.opacity = '0';
+            chatbotFabRef.style.pointerEvents = 'none';
+            if (chatbotOpen) toggleChatbot();
+        }
+    });
+
     // ========================= TYPING EFFECT ON HERO NAME =========================
     const heroNameLines = document.querySelectorAll('.hero-name-line');
     if (heroNameLines.length > 0) {
