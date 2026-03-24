@@ -362,7 +362,8 @@ document.addEventListener('DOMContentLoaded', () => {
             removeTyping();
 
             // n8n Chat Trigger suele devolver "output" o "text"
-            const reply = data.output || data.text || data.reply || data.message || 'Gracias por tu mensaje. ¿Hay algo más en lo que pueda ayudarte?';
+            let reply = data.output || data.text || data.reply || data.message || 'Gracias por tu mensaje. ¿Hay algo más en lo que pueda ayudarte?';
+            reply = reply.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" style="text-decoration: underline; font-weight: bold; color: inherit;">$1</a>');
             addChatMessage(reply, 'bot');
 
         } catch (error) {
