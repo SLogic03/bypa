@@ -26,17 +26,19 @@ export default async function handler(req, res) {
         return res.status(405).json({ error: 'Método no permitido' });
     }
 
-    // Validar origen: solo permitir tu dominio (y localhost para desarrollo)
-    const allowedOrigins = [
-        'https://byronaltamirano.me',
-        'https://www.byronaltamirano.me',
+    // Validar origen: dominios desde variable de entorno + Vercel previews + localhost
+    const envOrigins = (process.env.ALLOWED_ORIGINS || '').split(',').map(o => o.trim()).filter(Boolean);
+    const defaultOrigins = [
         'http://localhost:3000',
         'http://localhost:5500',
         'http://127.0.0.1:5500',
     ];
+    const allowedOrigins = [...envOrigins, ...defaultOrigins];
 
     const origin = req.headers.origin || req.headers.referer || '';
-    const isAllowed = allowedOrigins.some(o => origin.startsWith(o));
+    const isSameOrigin = !origin; // Same-origin requests often have no Origin header
+    const isVercelPreview = origin.includes('.vercel.app');
+    const isAllowed = isSameOrigin || isVercelPreview || allowedOrigins.some(o => origin.startsWith(o));
 
     if (!isAllowed) {
         return res.status(403).json({ error: 'Origen no autorizado' });
