@@ -334,14 +334,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typing) typing.remove();
     }
 
-    // Generate or retrieve a unique session ID for chat memory
+    // Generate a unique session ID for chat memory that resets on page reload
+    let currentSessionId = null;
     function getChatSessionId() {
-        let sid = sessionStorage.getItem('chatbot_session_id');
-        if (!sid) {
-            sid = 'session_' + Date.now() + '_' + Math.random().toString(36).substring(2, 9);
-            sessionStorage.setItem('chatbot_session_id', sid);
+        if (!currentSessionId) {
+            currentSessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substring(2, 9);
         }
-        return sid;
+        return currentSessionId;
     }
 
     // Send message to bot via Vercel proxy → n8n Chat Trigger
