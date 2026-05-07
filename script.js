@@ -412,51 +412,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // ========================= TYPING EFFECT ON HERO NAME =========================
-    const heroNameLines = document.querySelectorAll('.hero-name-line');
-    if (heroNameLines.length > 0) {
-        const linesData = [];
-        heroNameLines.forEach(line => {
-            linesData.push({
-                el: line,
-                text: line.textContent.trim(),
-                isAccent: line.classList.contains('accent')
-            });
-            line.textContent = '';
-        });
-
-        function typeLine(lineIndex) {
-            if (lineIndex >= linesData.length) return;
-            const { el, text, isAccent } = linesData[lineIndex];
-            el.classList.add('typing-cursor');
-            let i = 0;
-
-            function typeChar() {
-                if (i < text.length) {
-                    el.textContent += text.charAt(i);
-                    i++;
-                    setTimeout(typeChar, 80);
-                } else {
-                    // Remove cursor from current line
-                    el.classList.remove('typing-cursor');
-                    // Start next line after a short pause
-                    if (lineIndex < linesData.length - 1) {
-                        setTimeout(() => typeLine(lineIndex + 1), 300);
-                    } else {
-                        // Typing finished — show tagline
-                        const tagline = document.querySelector('.hero-tagline');
-                        if (tagline) {
-                            setTimeout(() => tagline.classList.add('visible'), 300);
-                        }
-                    }
-                }
-            }
-            typeChar();
-        }
-
-        // Start typing after splash finishes (splash ~2.1s total)
-        const splashDelay = document.getElementById('splash') ? 2400 : 600;
-        setTimeout(() => typeLine(0), splashDelay);
+    // ========================= HERO FADE-IN =========================
+    const heroContent = document.querySelector('.hero-content-centered');
+    if (heroContent) {
+        const splashDelay = document.getElementById('splash') ? 2400 : 300;
+        setTimeout(() => {
+            heroContent.classList.add('hero-visible');
+        }, splashDelay);
     }
 
     // ========================= VIDEO CAROUSEL =========================

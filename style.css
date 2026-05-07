@@ -587,76 +587,41 @@ ul {
     margin-bottom: 16px;
 }
 
-.hero-title {
-    margin-bottom: 16px;
-}
-
-.hero-tagline {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    opacity: 0;
-    transition: opacity 0.8s ease;
-}
-
-.hero-tagline.visible {
-    opacity: 1;
-}
-
-.hero-tagline-top {
-    font-size: clamp(0.7rem, 1.2vw, 0.85rem);
-    font-weight: 600;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.5);
-}
-
-.hero-tagline-bottom {
-    font-size: clamp(0.95rem, 1.8vw, 1.15rem);
-    font-weight: 300;
-    letter-spacing: 1px;
-    color: rgba(255, 255, 255, 0.75);
-}
-
-.hero-name-line {
-    display: block;
+.hero-title--headline {
     font-family: var(--font-display);
-    font-size: clamp(3rem, 6vw, 5rem);
+    font-size: clamp(2rem, 4.5vw, 3.4rem);
     font-weight: 900;
-    line-height: 1.05;
+    line-height: 1.15;
     color: var(--white);
-    overflow: hidden;
-    white-space: nowrap;
-    min-height: 1.1em;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.hero-name-line.accent {
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+.hero-subtitle-new {
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.8;
+    margin-bottom: 36px;
+    max-width: 540px;
 }
 
-.hero-name-line.typing-cursor::after {
-    content: '|';
-    display: inline-block;
-    color: var(--white);
-    -webkit-text-fill-color: var(--white);
-    animation: cursorBlink 0.7s step-end infinite;
-    margin-left: 2px;
-    font-weight: 300;
+.hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
 }
 
-@keyframes cursorBlink {
+/* Hero fade-in (replaces typewriter) */
+.hero-content-centered {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
+}
 
-    0%,
-    100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0;
-    }
+.hero-content-centered.hero-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .hero-subtitle {
