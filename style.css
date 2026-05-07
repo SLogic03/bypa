@@ -589,27 +589,36 @@ ul {
 
 .hero-title--headline {
     font-family: var(--font-display);
-    font-size: clamp(2rem, 4.5vw, 3.4rem);
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
     font-weight: 900;
-    line-height: 1.15;
+    line-height: 1.1;
     color: var(--white);
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: -0.5px;
+    max-width: 650px;
+}
+
+.hero-title--headline .highlight {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .hero-subtitle-new {
-    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
-    color: rgba(255, 255, 255, 0.7);
-    line-height: 1.8;
+    font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.6;
     margin-bottom: 36px;
-    max-width: 540px;
+    max-width: 500px;
+    font-weight: 400;
 }
 
 .hero-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
+    font-size: 0.9rem;
+    padding: 16px 36px;
+    letter-spacing: 0.5px;
 }
 
 /* Hero fade-in (replaces typewriter) */
