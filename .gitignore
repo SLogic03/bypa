@@ -8,6 +8,7 @@
 
 # Node
 node_modules/
+older/
 
 # OS
 .DS_Store
