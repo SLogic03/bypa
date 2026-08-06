@@ -3182,3 +3182,29 @@ ul {
         bottom: -32px;
     }
 }
+
+/* ========================= VIDEO DE PRESENTACIÓN (SECCIÓN) ========================= */
+.video-presentacion {
+    padding: 60px 0 20px;
+    background: var(--light);
+}
+
+/* ========================= REPRODUCTOR CLOUDINARY ========================= */
+.video-presentacion-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 900px; /* Video más grande */
+    margin: 10px auto 40px auto; /* Más pegado al título (top 10px) */
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    background: var(--dark);
+    border: 1px solid rgba(0, 51, 102, 0.1);
+}
+
+.video-presentacion-wrapper iframe {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: none;
+}
