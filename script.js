@@ -536,4 +536,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ========================= TESTIMONIO DESTACADO VIDEO =========================
+    const testimonioVideo = document.getElementById('testimonioSaulVideo');
+    const testimonioOverlay = document.getElementById('testimonioSaulOverlay');
+
+    if (testimonioVideo && testimonioOverlay) {
+        const playBtn = testimonioOverlay.querySelector('.testimonio-destacado__play-btn');
+
+        function toggleTestimonioPlay() {
+            if (testimonioVideo.paused) {
+                testimonioVideo.play();
+                testimonioVideo.controls = true;
+                testimonioOverlay.classList.add('hidden');
+            } else {
+                testimonioVideo.pause();
+                testimonioVideo.controls = false;
+                testimonioOverlay.classList.remove('hidden');
+            }
+        }
+
+        playBtn.addEventListener('click', toggleTestimonioPlay);
+        testimonioOverlay.addEventListener('click', (e) => {
+            if (e.target === testimonioOverlay) toggleTestimonioPlay();
+        });
+        testimonioVideo.addEventListener('click', toggleTestimonioPlay);
+
+        testimonioVideo.addEventListener('ended', () => {
+            testimonioVideo.controls = false;
+            testimonioOverlay.classList.remove('hidden');
+        });
+    }
+
 });
