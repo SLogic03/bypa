@@ -777,21 +777,26 @@ ul {
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
-    padding: 8px;
-    border: 2px solid rgba(0, 51, 102, 0.2);
-    border-radius: 40px;
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(4px);
 }
 
 .mouse {
-    width: 28px;
-    height: 44px;
+    width: 26px;
+    height: 42px;
     border: 2px solid var(--warm);
-    border-radius: 22px;
+    border-radius: 20px;
     display: flex;
     justify-content: center;
     padding-top: 8px;
+    animation: mouseBounce 2.5s ease-in-out infinite;
+}
+
+@keyframes mouseBounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(10px);
+    }
 }
 
 .mouse-wheel {
