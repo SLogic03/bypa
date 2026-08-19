@@ -14,3 +14,5 @@ older/
 .DS_Store
 Thumbs.db
 ChatBot_Bypa.json
+
+.agents/
