@@ -536,34 +536,49 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ========================= TESTIMONIO DESTACADO VIDEO =========================
-    const testimonioVideo = document.getElementById('testimonioSaulVideo');
-    const testimonioOverlay = document.getElementById('testimonioSaulOverlay');
+    // ========================= TESTIMONIOS DESTACADOS VIDEO =========================
+    const testimoniosDestacados = document.querySelectorAll('.testimonio-destacado');
+    
+    testimoniosDestacados.forEach(testimonio => {
+        const video = testimonio.querySelector('.testimonio-destacado__player');
+        const overlay = testimonio.querySelector('.testimonio-destacado__overlay');
+        
+        if (video && overlay) {
+            const playBtn = overlay.querySelector('.testimonio-destacado__play-btn');
 
-    if (testimonioVideo && testimonioOverlay) {
-        const playBtn = testimonioOverlay.querySelector('.testimonio-destacado__play-btn');
-
-        function toggleTestimonioPlay() {
-            if (testimonioVideo.paused) {
-                testimonioVideo.play();
-                testimonioVideo.controls = true;
-                testimonioOverlay.classList.add('hidden');
-            } else {
-                testimonioVideo.pause();
-                testimonioVideo.controls = false;
-                testimonioOverlay.classList.remove('hidden');
+            function toggleTestimonioPlay() {
+                if (video.paused) {
+                    video.play();
+                    video.controls = true;
+                    overlay.classList.add('hidden');
+                } else {
+                    video.pause();
+                    video.controls = false;
+                    overlay.classList.remove('hidden');
+                }
             }
+
+            playBtn.addEventListener('click', toggleTestimonioPlay);
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) toggleTestimonioPlay();
+            });
+
+            video.addEventListener('ended', () => {
+                video.controls = false;
+                overlay.classList.remove('hidden');
+            });
         }
+    });
 
-        playBtn.addEventListener('click', toggleTestimonioPlay);
-        testimonioOverlay.addEventListener('click', (e) => {
-            if (e.target === testimonioOverlay) toggleTestimonioPlay();
-        });
-        testimonioVideo.addEventListener('click', toggleTestimonioPlay);
+    // ========================= HERO VIDEO FACADE =========================
+    const heroVideoFacade = document.getElementById('heroVideoFacade');
+    const heroVideoIframe = document.getElementById('heroVideoIframe');
 
-        testimonioVideo.addEventListener('ended', () => {
-            testimonioVideo.controls = false;
-            testimonioOverlay.classList.remove('hidden');
+    if (heroVideoFacade && heroVideoIframe) {
+        heroVideoFacade.addEventListener('click', () => {
+            heroVideoIframe.src = heroVideoIframe.dataset.src;
+            heroVideoFacade.style.opacity = '0';
+            heroVideoFacade.style.pointerEvents = 'none';
         });
     }
 

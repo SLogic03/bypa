@@ -2842,6 +2842,16 @@ ul {
     box-shadow: var(--shadow-md);
 }
 
+.testimonio-destacado--reverse {
+    grid-template-columns: 1fr 320px;
+}
+.testimonio-destacado--reverse .testimonio-destacado__video {
+    order: 2;
+}
+.testimonio-destacado--reverse .testimonio-destacado__content {
+    order: 1;
+}
+
 /* Video Container */
 .testimonio-destacado__video {
     position: relative;
@@ -3302,6 +3312,11 @@ ul {
         grid-template-columns: 1fr;
         gap: 28px;
         padding: 24px;
+    }
+
+    .testimonio-destacado--reverse .testimonio-destacado__video,
+    .testimonio-destacado--reverse .testimonio-destacado__content {
+        order: unset;
     }
 
     .testimonio-destacado__video {
