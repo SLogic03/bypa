@@ -1215,7 +1215,7 @@ ul {
 /* ========================= SERVICIOS ========================= */
 .servicios-v2 {
     padding: 120px 0;
-    background: var(--light);
+    background: var(--light-gray);
 }
 
 /* ---- Pricing Grid ---- */
