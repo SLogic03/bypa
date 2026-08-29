@@ -58,6 +58,16 @@
 
 }
 
+/* ========================= SELECTION ========================= */
+::selection {
+    background-color: var(--color-danger);
+    color: var(--white);
+}
+
+::-moz-selection {
+    background-color: var(--color-danger);
+    color: var(--white);
+}
 /* ========================= RESET & BASE ========================= */
 
 /* ---------- SPLASH INTRO (Shrink to Navbar) ---------- */
@@ -1215,7 +1225,7 @@ ul {
 /* ========================= SERVICIOS ========================= */
 .servicios-v2 {
     padding: 120px 0;
-    background: var(--light-gray);
+    background: var(--light);
 }
 
 /* ---- Pricing Grid ---- */
@@ -2196,7 +2206,7 @@ ul {
 /* ========================= PILARES (Robbins-style) ========================= */
 .pilares {
     padding: 120px 0;
-    background: var(--light);
+    background: var(--light-gray);
     position: relative;
     overflow: hidden;
 }
@@ -2296,7 +2306,7 @@ ul {
 /* ========================= CASOS DE ESTUDIO ========================= */
 .casos-estudio {
     padding: 120px 0;
-    background: var(--light);
+    background: var(--light-gray);
     position: relative;
     overflow: hidden;
 }
@@ -2969,8 +2979,8 @@ ul {
 
 .testimonio-metric i {
     font-size: var(--text-sm);
-    color: var(--primary);
-    opacity: 0.6;
+    color: var(--color-danger);
+    opacity: 1;
 }
 
 .testimonio-metric__number {
@@ -3309,7 +3319,8 @@ ul {
     }
 
     .testimonio-destacado {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column-reverse;
         gap: 28px;
         padding: 24px;
     }
@@ -3320,23 +3331,31 @@ ul {
     }
 
     .testimonio-destacado__video {
-        max-width: 300px;
+        max-width: 100%;
         margin: 0 auto;
     }
 
     .testimonio-destacado__content {
-        text-align: center;
-        align-items: center;
+        text-align: left;
+        align-items: flex-start;
+    }
+
+    .testimonio-destacado__text {
+        display: none;
     }
 
     .testimonio-destacado__metrics {
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        border: none;
+        padding: 10px 0;
     }
 
+
+
     .testimonio-destacado__author {
-        justify-content: center;
+        justify-content: flex-start;
     }
 
 }
@@ -3436,12 +3455,12 @@ ul {
     }
 
     .testimonio-destacado__video {
-        max-width: 240px;
+        max-width: 100%;
     }
 
     .testimonio-destacado__metrics {
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
         gap: 12px;
     }
 
